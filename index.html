@@ -142,4 +142,46 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
   setTimeout(inject, 1500);
   setTimeout(inject, 3000);
 })();
+</script><script>
+(function() {
+  var SID = 'elixir-stats-bar', IID = 'elixir-industry', busy = false;
+  var sHtml = '<div id=\"elixir-stats-bar\" style=\"background:linear-gradient(135deg,#0f0f1a,#1a0533);border-top:1px solid rgba(139,92,246,0.3);border-bottom:1px solid rgba(139,92,246,0.3);padding:40px 24px;\"><div style=\"max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px;text-align:center;\"><div><div style=\"font-size:42px;font-weight:800;background:linear-gradient(135deg,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent\">150+</div><div style=\"color:#d1d5db;font-size:14px;margin-top:6px;letter-spacing:0.05em\">PROJECTS DELIVERED</div></div><div><div style=\"font-size:42px;font-weight:800;background:linear-gradient(135deg,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent\">98.5%</div><div style=\"color:#d1d5db;font-size:14px;margin-top:6px;letter-spacing:0.05em\">UPTIME SLA</div></div><div><div style=\"font-size:42px;font-weight:800;background:linear-gradient(135deg,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent\">40+</div><div style=\"color:#d1d5db;font-size:14px;margin-top:6px;letter-spacing:0.05em\">ENTERPRISE CLIENTS</div></div><div><div style=\"font-size:42px;font-weight:800;background:linear-gradient(135deg,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent\">5</div><div style=\"color:#d1d5db;font-size:14px;margin-top:6px;letter-spacing:0.05em\">INDUSTRY VERTICALS</div></div><div><div style=\"font-size:42px;font-weight:800;background:linear-gradient(135deg,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent\">8+</div><div style=\"color:#d1d5db;font-size:14px;margin-top:6px;letter-spacing:0.05em\">YEARS EXPERIENCE</div></div></div></div>';
+  var iHtml = '<div id=\"elixir-industry\" style=\"background:#050510;padding:80px 24px;\"><div style=\"max-width:1200px;margin:0 auto;\"><h2 style=\"text-align:center;color:white;font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:12px\">AI Solutions for Every Industry</h2><p style=\"text-align:center;color:#9ca3af;font-size:18px;margin-bottom:56px;max-width:600px;margin-left:auto;margin-right:auto\">We speak your industry language. Compliance, regulations, workflows, and all.</p><div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;\"><div style=\"background:linear-gradient(135deg,#0f172a,#1e1b4b);border:1px solid rgba(99,102,241,0.3);border-radius:16px;padding:28px 20px;text-align:center\"><div style=\"font-size:36px;margin-bottom:12px\">&#127970;</div><h3 style=\"color:white;font-size:16px;font-weight:700;margin-bottom:8px\">Banking &amp; Finance</h3><p style=\"color:#9ca3af;font-size:13px;line-height:1.6\">Fraud detection, compliance AI, customer service automation.</p><a href=\"/services/ai-agents\" style=\"display:inline-block;margin-top:16px;color:#a78bfa;font-size:13px;text-decoration:none\">Explore &rarr;</a></div><div style=\"background:linear-gradient(135deg,#0f172a,#022c22);border:1px solid rgba(16,185,129,0.3);border-radius:16px;padding:28px 20px;text-align:center\"><div style=\"font-size:36px;margin-bottom:12px\">&#127973;</div><h3 style=\"color:white;font-size:16px;font-weight:700;margin-bottom:8px\">Healthcare</h3><p style=\"color:#9ca3af;font-size:13px;line-height:1.6\">HIPAA-compliant AI, clinical decision support, patient triage.</p><a href=\"/services/rag-vector-db\" style=\"display:inline-block;margin-top:16px;color:#34d399;font-size:13px;text-decoration:none\">Explore &rarr;</a></div><div style=\"background:linear-gradient(135deg,#0f172a,#1c1917);border:1px solid rgba(245,158,11,0.3);border-radius:16px;padding:28px 20px;text-align:center\"><div style=\"font-size:36px;margin-bottom:12px\">&#9878;</div><h3 style=\"color:white;font-size:16px;font-weight:700;margin-bottom:8px\">Legal</h3><p style=\"color:#9ca3af;font-size:13px;line-height:1.6\">Contract intelligence, document search, due diligence automation.</p><a href=\"/services/rag-vector-db\" style=\"display:inline-block;margin-top:16px;color:#fbbf24;font-size:13px;text-decoration:none\">Explore &rarr;</a></div><div style=\"background:linear-gradient(135deg,#0f172a,#1e0533);border:1px solid rgba(236,72,153,0.3);border-radius:16px;padding:28px 20px;text-align:center\"><div style=\"font-size:36px;margin-bottom:12px\">&#128722;</div><h3 style=\"color:white;font-size:16px;font-weight:700;margin-bottom:8px\">Retail &amp; E-commerce</h3><p style=\"color:#9ca3af;font-size:13px;line-height:1.6\">Recommendations, demand forecasting, AI customer service.</p><a href=\"/services/mlops\" style=\"display:inline-block;margin-top:16px;color:#f472b6;font-size:13px;text-decoration:none\">Explore &rarr;</a></div><div style=\"background:linear-gradient(135deg,#0f172a,#172554);border:1px solid rgba(59,130,246,0.3);border-radius:16px;padding:28px 20px;text-align:center\"><div style=\"font-size:36px;margin-bottom:12px\">&#127981;</div><h3 style=\"color:white;font-size:16px;font-weight:700;margin-bottom:8px\">Manufacturing</h3><p style=\"color:#9ca3af;font-size:13px;line-height:1.6\">Predictive maintenance, quality control AI, supply chain optimisation.</p><a href=\"/services/mlops\" style=\"display:inline-block;margin-top:16px;color:#60a5fa;font-size:13px;text-decoration:none\">Explore &rarr;</a></div></div><div style=\"text-align:center;margin-top:48px\"><a href=\"/contact\" style=\"background:linear-gradient(135deg,#7c3aed,#db2777);color:white;padding:14px 40px;border-radius:9999px;font-weight:700;font-size:16px;text-decoration:none;display:inline-block\">Get a Free AI Audit &rarr;</a></div></div></div>';
+
+  function inject() {
+    if (busy) return; busy = true;
+    if (!document.getElementById(SID)) {
+      var h2s = document.querySelectorAll('h2');
+      for (var i = 0; i < h2s.length; i++) {
+        if (h2s[i].textContent.indexOf('Code that goes') !== -1) {
+          var wrap = h2s[i].parentElement;
+          var d = document.createElement('div');
+          d.innerHTML = sHtml;
+          wrap.parentNode.insertBefore(d.firstChild, wrap);
+          break;
+        }
+      }
+    }
+    if (!document.getElementById(IID)) {
+      var cv = document.querySelector('[id^="canvas-container-"]');
+      if (cv) {
+        var d2 = document.createElement('div');
+        d2.innerHTML = iHtml;
+        cv.parentNode.insertBefore(d2.firstChild, cv);
+      }
+    }
+    busy = false;
+  }
+
+  document.addEventListener('DOMContentLoaded', inject);
+  window.addEventListener('load', inject);
+  [100,300,700,1500,3000].forEach(function(t){setTimeout(inject,t);});
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var obs = new MutationObserver(function() {
+      if (!document.getElementById(SID) || !document.getElementById(IID)) inject();
+    });
+    obs.observe(document.body, {childList:true, subtree:false});
+  });
+})();
 </script></body></html>
