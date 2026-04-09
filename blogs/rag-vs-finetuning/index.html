@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en" class="light" style="color-scheme: light;"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/_next/static/css/f30152c0704fba31.css" data-precedence="next"><link rel="stylesheet" href="/_next/static/css/7720dc958f9d217f.css" data-precedence="next"><link rel="preload" as="script" fetchpriority="low" href="/_next/static/chunks/webpack-0939024955e780c3.js"><script src="/_next/static/chunks/4bd1b696-b68fc587c109cb64.js" async=""></script><script src="/_next/static/chunks/1517-04dad57932d38305.js" async=""></script><script src="/_next/static/chunks/main-app-9a3720905815865a.js" async=""></script><script src="/_next/static/chunks/app/layout-1291c725304e2d25.js" async=""></script><meta name="description" content="RAG vs fine-tuning decision guide. Learn when to use retrieval-augmented generation vs model fine-tuning for your business AI use case, with cost comparisons."><meta name="next-size-adjust" content=""><title>RAG vs Fine-Tuning: Which Should Your Business Use? | Elixir</title><link rel="icon" href="/assets/img/e-logo.png" sizes="32x32"><link rel="apple-touch-icon" href="/assets/img/e-logo.png" sizes="180x180" type="image/png"><script src="/_next/static/chunks/polyfills-42372ed130431b0a.js" nomodule=""></script><link rel="preload" href="/_next/static/media/569ce4b8f30dc480-s.p.woff2" as="font" crossorigin="" type="font/woff2"><link rel="preload" href="/_next/static/media/93f479601ee12b01-s.p.woff2" as="font" crossorigin="" type="font/woff2"><script>
+(function(){
+  var orig = history.pushState.bind(history);
+  history.pushState = function(s, t, url){
+    if(url && url !== window.location.pathname + window.location.search){
+      window.location.href = url;
+      return;
+    }
+    orig(s, t, url);
+  };
+  var rorig = history.replaceState.bind(history);
+  history.replaceState = function(s, t, url){
+    if(url && url !== window.location.pathname + window.location.search){
+      window.location.href = url;
+      return;
+    }
+    rorig(s, t, url);
+  };
+})();
+</script>
+
+<script>
+// Belt-and-suspenders: also hide via JS after hydration
+document.addEventListener('DOMContentLoaded', function(){
+  var nodes = document.querySelectorAll('div.fixed');
+  nodes.forEach(function(el){
+    if(el.style && el.id !== 'static-nav' && el.querySelector('nav')){
+      el.style.display = 'none';
+    }
+  });
+});
+</script>
+<style>
+/* hide spacer div added by HTML injection from old patches */
+body > div[style*="height:64px"] { display: none; }
+body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
+</style>
+</head><body class="__variable_5cfdac __variable_9a8899 antialiased"><script>((e,t,r,n,o,a,i,u)=>{let s=document.documentElement,l=["light","dark"];function c(t){(Array.isArray(e)?e:[e]).forEach(e=>{let r="class"===e,n=r&&a?o.map(e=>a[e]||e):o;r?(s.classList.remove(...n),s.classList.add(t)):s.setAttribute(e,t)}),u&&l.includes(t)&&(s.style.colorScheme=t)}if(n)c(n);else try{let e=localStorage.getItem(t)||r,n=i&&"system"===e?window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light":e;c(n)}catch(e){}})("class","theme","system",null,["light","dark"],null,true,true)</script><div class="bg-black min-h-screen py-20 font-sans">
+  <div class="max-w-3xl mx-auto px-6">
+    <div style="margin-bottom:24px">
+      <span style="background:#dc2626;padding:4px 14px;border-radius:9999px;color:white;font-size:13px;font-weight:600">AI & ML</span>
+      <span style="color:#9ca3af;font-size:14px;margin-left:12px">8 min read &middot; February 2025</span>
+    </div>
+    <h1 style="color:white;font-size:clamp(28px,5vw,44px);font-weight:800;line-height:1.2;margin-bottom:20px">RAG vs Fine-Tuning: Which Should Your Business Use?</h1>
+    <p style="color:#d1d5db;font-size:19px;line-height:1.7;margin-bottom:32px">A practical decision framework for choosing between retrieval-augmented generation and fine-tuning — with real cost and performance comparisons</p>
+    <img src="/assets/img/studydao.png" alt="RAG vs Fine-Tuning: Which Should Your Business Use?" style="width:100%;border-radius:16px;margin-bottom:40px;object-fit:cover;height:320px">
+    <div style="color:#e5e7eb;font-size:17px;line-height:1.85;max-width:720px">
+      <h2>The Question Every AI Project Faces</h2>
+<p>You're building an AI system that needs to answer questions about your business — your products, your policies, your knowledge base. The question inevitably comes up: should we use retrieval-augmented generation (RAG) or fine-tune an LLM on our data?</p>
+<p>The answer matters because the two approaches have very different cost profiles, maintenance requirements, and performance characteristics. Choosing the wrong one can mean wasting months of engineering effort or building a system that works in demos but fails in production.</p>
+
+<h2>What Each Approach Does</h2>
+<p><strong>RAG</strong> keeps the base LLM unchanged. Instead, you build a retrieval system that fetches relevant context from your knowledge base and injects it into the LLM's prompt at query time. The LLM generates an answer grounded in that retrieved context. The model's weights never change — you're just showing it your documents at runtime.</p>
+<p><strong>Fine-tuning</strong> updates the model's weights by training it on examples from your domain. The goal is to adjust the model's behaviour — its tone, format, factual knowledge, or reasoning patterns — to better suit your use case. The model 'internalises' your domain knowledge rather than retrieving it at runtime.</p>
+
+<h2>When RAG Wins</h2>
+<p><strong>Your knowledge changes frequently.</strong> RAG lets you update your knowledge base without retraining a model. If your product catalogue changes weekly, your policies update quarterly, or you need to incorporate breaking news — RAG handles this with a simple index update. Fine-tuning requires retraining (days to weeks and significant compute cost) every time your knowledge changes.</p>
+<p><strong>You need source attribution.</strong> RAG naturally supports citing sources — the answer comes from specific retrieved documents that can be shown to the user. Fine-tuned models 'know' things but can't tell you where they learned them. For legal, compliance, and healthcare applications, this is often decisive.</p>
+<p><strong>You're working with a large, diverse knowledge base.</strong> Fine-tuning has a fundamental limitation: the model can only learn so much from training examples before it starts forgetting other things (catastrophic forgetting). If you have 100,000 documents, fine-tuning won't teach the model all of them. RAG retrieves any of them on demand.</p>
+<p><strong>Budget and time constraints.</strong> Building a RAG system typically takes 4-8 weeks. Fine-tuning a large model properly — with data preparation, training runs, evaluation, and iteration — takes 2-4 months and costs significantly more in compute and expertise.</p>
+
+<h2>When Fine-Tuning Wins</h2>
+<p><strong>You need a specific output format or style.</strong> If every output must follow a precise template — a specific JSON schema, a regulated report format, a particular communication style — fine-tuning is much more reliable than prompt engineering alone. The model learns the pattern deeply, not just from the system prompt.</p>
+<p><strong>You need to change how the model reasons, not just what it knows.</strong> RAG gives the model new facts. Fine-tuning changes how it thinks. If you need an LLM to reason in a domain-specific way — legal reasoning, medical differential diagnosis, financial risk assessment — fine-tuning on expert examples teaches the reasoning pattern.</p>
+<p><strong>Your use case is latency-critical.</strong> RAG adds retrieval time to every query — typically 200-800ms for a well-optimised system. Fine-tuned models respond as fast as the base model. For real-time applications where every millisecond matters, fine-tuning may be necessary.</p>
+
+<h2>The Hybrid Approach</h2>
+<p>In practice, many production systems use both. Fine-tune the model on your domain (teaching it reasoning patterns and output formats), and use RAG to inject current, specific information at query time. This gives you the best of both: a model that thinks in your domain, with access to your current knowledge.</p>
+<p>At Elixir, approximately 60% of our production AI systems use RAG alone, 15% use fine-tuning alone, and 25% use a hybrid approach. The choice depends on the specific requirements — there's no universal answer.</p>
+
+<h2>Quick Decision Framework</h2>
+<p>Use RAG when: knowledge changes frequently, source attribution is required, or budget is constrained.</p>
+<p>Use fine-tuning when: output format must be precise, domain reasoning must be specialised, or latency is critical.</p>
+<p>Use both when: you need domain-specialised reasoning AND access to a large, changing knowledge base.</p>
+    </div>
+    <div style="background:linear-gradient(135deg,#4c1d95,#831843);border-radius:16px;padding:40px;margin-top:60px;text-align:center">
+      <h3 style="color:white;font-size:24px;font-weight:700;margin-bottom:12px">Ready to implement AI in your business?</h3>
+      <p style="color:#e9d5ff;margin-bottom:24px">Get a free 1-hour AI strategy session with our team.</p>
+      <a href="/contact" style="background:white;color:#4c1d95;padding:12px 32px;border-radius:9999px;font-weight:700;text-decoration:none;display:inline-block">Get a Free AI Audit</a>
+    </div>
+    <div style="margin-top:40px;padding-top:32px;border-top:1px solid #374151">
+      <p style="color:#9ca3af;font-size:14px;margin-bottom:12px">Tags:</p>
+      <div><span style="background:#dc2626;padding:4px 12px;border-radius:9999px;color:white;font-size:13px;margin-right:8px">RAG</span><span style="background:#dc2626;padding:4px 12px;border-radius:9999px;color:white;font-size:13px;margin-right:8px">Fine-Tuning</span><span style="background:#dc2626;padding:4px 12px;border-radius:9999px;color:white;font-size:13px;margin-right:8px">LLM</span><span style="background:#dc2626;padding:4px 12px;border-radius:9999px;color:white;font-size:13px;margin-right:8px">AI Architecture</span></div>
+    </div>
+  </div>
+</div><script src="/_next/static/chunks/webpack-0939024955e780c3.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:I[67113,[\"7177\",\"static/chunks/app/layout-1291c725304e2d25.js\"],\"ThemeProvider\"]\n3:I[15244,[],\"\"]\n4:I[43866,[],\"\"]\n6:I[86213,[],\"OutletBoundary\"]\n8:I[86213,[],\"MetadataBoundary\"]\na:I[86213,[],\"ViewportBoundary\"]\nc:I[34835,[],\"\"]\n:HL[\"/_next/static/media/569ce4b8f30dc480-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/media/93f479601ee12b01-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/css/f30152c0704fba31.css\",\"style\"]\n:HL[\"/_next/static/css/7720dc958f9d217f.css\",\"style\"]\n"])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"b\":\"pJxv8tBNGiml6bhbmt1sk\",\"p\":\"\",\"c\":[\"\",\"blogs\",\"1\"],\"i\":false,\"f\":[[[\"\",{\"children\":[\"blogs\",{\"children\":[[\"pageName\",\"1\",\"d\"],{\"children\":[\"__PAGE__\",{}]}]}]},\"$undefined\",\"$undefined\",true],[\"\",[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/f30152c0704fba31.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/7720dc958f9d217f.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_5cfdac __variable_9a8899 antialiased\",\"children\":[\"$\",\"$L2\",null,{\"attribute\":\"class\",\"children\":[\"$\",\"$L3\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L4\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[],[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":404}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]}]}]]}],{\"children\":[\"blogs\",[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L3\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"blogs\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L4\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[[\"pageName\",\"1\",\"d\"],[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L3\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"blogs\",\"children\",\"$0:f:0:1:2:children:2:children:0\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L4\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[\"__PAGE__\",[\"$\",\"$1\",\"c\",{\"children\":[\"$L5\",null,[\"$\",\"$L6\",null,{\"children\":\"$L7\"}]]}],{},null,false]},null,false]},null,false]},null,false],[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$1\",\"ig9PZkcmOg-l2bvVv9JES\",{\"children\":[[\"$\",\"$L8\",null,{\"children\":\"$L9\"}],[\"$\",\"$La\",null,{\"children\":\"$Lb\"}],[\"$\",\"meta\",null,{\"name\":\"next-size-adjust\",\"content\":\"\"}]]}]]}],false]],\"m\":\"$undefined\",\"G\":[\"$c\",\"$undefined\"],\"s\":false,\"S\":false}\n"])</script><script>self.__next_f.push([1,"b:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n9:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"Elixir\"}],[\"$\",\"link\",\"2\",{\"rel\":\"icon\",\"href\":\"/assets/img/e-logo.png\",\"sizes\":\"32x32\"}],[\"$\",\"link\",\"3\",{\"rel\":\"apple-touch-icon\",\"href\":\"/assets/img/e-logo.png\",\"sizes\":\"180x180\",\"type\":\"image/png\"}]]\n7:null\n"])</script><script>self.__next_f.push([1,"5:[\"$\",\"div\",null,{\"className\":\"min-h-screen flex items-center justify-center\",\"children\":[\"$\",\"div\",null,{\"className\":\"text-center\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"text-2xl font-bold mb-4\",\"children\":\"Blog post not found\"}],[\"$\",\"p\",null,{\"className\":\"text-gray-600\",\"children\":\"The requested blog post could not be loaded\"}]]}]}]\n"])</script><next-route-announcer style="position: absolute;"></next-route-announcer></body></html>

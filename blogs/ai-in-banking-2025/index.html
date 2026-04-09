@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="en" class="light" style="color-scheme: light;"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/_next/static/css/f30152c0704fba31.css" data-precedence="next"><link rel="stylesheet" href="/_next/static/css/7720dc958f9d217f.css" data-precedence="next"><link rel="preload" as="script" fetchpriority="low" href="/_next/static/chunks/webpack-0939024955e780c3.js"><script src="/_next/static/chunks/4bd1b696-b68fc587c109cb64.js" async=""></script><script src="/_next/static/chunks/1517-04dad57932d38305.js" async=""></script><script src="/_next/static/chunks/main-app-9a3720905815865a.js" async=""></script><script src="/_next/static/chunks/app/layout-1291c725304e2d25.js" async=""></script><meta name="description" content="AI in banking use cases that deliver real ROI in 2025. Fraud detection, customer service, compliance automation, and credit decisioning with implementation guidance."><meta name="next-size-adjust" content=""><title>AI in Banking: What's Actually Working in 2025 | Elixir</title><link rel="icon" href="/assets/img/e-logo.png" sizes="32x32"><link rel="apple-touch-icon" href="/assets/img/e-logo.png" sizes="180x180" type="image/png"><script src="/_next/static/chunks/polyfills-42372ed130431b0a.js" nomodule=""></script><link rel="preload" href="/_next/static/media/569ce4b8f30dc480-s.p.woff2" as="font" crossorigin="" type="font/woff2"><link rel="preload" href="/_next/static/media/93f479601ee12b01-s.p.woff2" as="font" crossorigin="" type="font/woff2"><script>
+(function(){
+  var orig = history.pushState.bind(history);
+  history.pushState = function(s, t, url){
+    if(url && url !== window.location.pathname + window.location.search){
+      window.location.href = url;
+      return;
+    }
+    orig(s, t, url);
+  };
+  var rorig = history.replaceState.bind(history);
+  history.replaceState = function(s, t, url){
+    if(url && url !== window.location.pathname + window.location.search){
+      window.location.href = url;
+      return;
+    }
+    rorig(s, t, url);
+  };
+})();
+</script>
+
+<script>
+// Belt-and-suspenders: also hide via JS after hydration
+document.addEventListener('DOMContentLoaded', function(){
+  var nodes = document.querySelectorAll('div.fixed');
+  nodes.forEach(function(el){
+    if(el.style && el.id !== 'static-nav' && el.querySelector('nav')){
+      el.style.display = 'none';
+    }
+  });
+});
+</script>
+<style>
+/* hide spacer div added by HTML injection from old patches */
+body > div[style*="height:64px"] { display: none; }
+body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
+</style>
+</head><body class="__variable_5cfdac __variable_9a8899 antialiased"><script>((e,t,r,n,o,a,i,u)=>{let s=document.documentElement,l=["light","dark"];function c(t){(Array.isArray(e)?e:[e]).forEach(e=>{let r="class"===e,n=r&&a?o.map(e=>a[e]||e):o;r?(s.classList.remove(...n),s.classList.add(t)):s.setAttribute(e,t)}),u&&l.includes(t)&&(s.style.colorScheme=t)}if(n)c(n);else try{let e=localStorage.getItem(t)||r,n=i&&"system"===e?window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light":e;c(n)}catch(e){}})("class","theme","system",null,["light","dark"],null,true,true)</script><div class="bg-black min-h-screen py-20 font-sans">
+  <div class="max-w-3xl mx-auto px-6">
+    <div style="margin-bottom:24px">
+      <span style="background:#0284c7;padding:4px 14px;border-radius:9999px;color:white;font-size:13px;font-weight:600">Banking & Finance</span>
+      <span style="color:#9ca3af;font-size:14px;margin-left:12px">10 min read &middot; February 2025</span>
+    </div>
+    <h1 style="color:white;font-size:clamp(28px,5vw,44px);font-weight:800;line-height:1.2;margin-bottom:20px">AI in Banking: What's Actually Working in 2025</h1>
+    <p style="color:#d1d5db;font-size:19px;line-height:1.7;margin-bottom:32px">Beyond the hype — the AI use cases delivering real ROI in financial services, with implementation guidance</p>
+    <img src="/assets/img/studydao.png" alt="AI in Banking: What's Actually Working in 2025" style="width:100%;border-radius:16px;margin-bottom:40px;object-fit:cover;height:320px">
+    <div style="color:#e5e7eb;font-size:17px;line-height:1.85;max-width:720px">
+      <h2>The State of AI in Financial Services</h2>
+<p>Financial services was one of the first industries to adopt machine learning at scale — fraud detection models have been running in production at major banks for over a decade. But the LLM revolution of 2023-2024 opened a new set of use cases that are now reaching production maturity.</p>
+<p>This post focuses on what's working — with real implementation patterns and ROI data — not theoretical possibilities.</p>
+
+<h2>Use Case 1: Fraud Detection</h2>
+<p>Rule-based fraud detection was the industry standard for years. It works — until fraudsters adapt, which they do quickly. ML-based fraud detection systems now outperform rule-based approaches across every metric that matters.</p>
+<p>The state of the art in 2025 is a two-stage system:</p>
+<ul>
+<li><strong>Real-time scoring:</strong> A gradient boosting or neural network model scores every transaction in under 100ms, using 100-200 features including velocity patterns, device fingerprint, geographic anomalies, and merchant category risk.</li>
+<li><strong>Graph-based detection:</strong> A separate model analyses transaction networks to detect fraud rings, mule accounts, and synthetic identity fraud that individual transaction models miss.</li>
+</ul>
+<p>Typical results: fraud detection rate improves from 60-70% (rules) to 95-99% (ML). False positive rate drops 60-80%. Annual fraud loss reduction for a mid-size bank: £5-15M depending on transaction volume.</p>
+
+<h2>Use Case 2: Customer Service Automation</h2>
+<p>Banking customer service is high-volume, heavily regulated, and largely routine. 60-70% of contacts are enquiries that require no human judgement. AI agents now handle these at scale — at a fraction of the cost and with faster resolution.</p>
+<p>The compliance angle is non-trivial. Banking AI agents must:
+<ul>
+<li>Never provide advice that could be construed as regulated financial advice</li>
+<li>Provide accurate information about products and charges (Consumer Duty requirements in the UK)</li>
+<li>Maintain full audit trails of every interaction</li>
+<li>Escalate complaints immediately to humans</li>
+</ul></p>
+<p>Well-implemented banking AI agents achieve 65-75% containment rates with customer satisfaction scores that match or exceed human agent scores for routine enquiries.</p>
+
+<h2>Use Case 3: Compliance and Regulatory Intelligence</h2>
+<p>The UK regulatory environment generates thousands of pages of new guidance annually. Compliance teams spend enormous time tracking regulatory change, assessing impact, and updating policies and training materials.</p>
+<p>LLM-based regulatory intelligence systems now:
+<ul>
+<li>Monitor regulatory feeds (FCA, PRA, EBA, etc.) for relevant updates</li>
+<li>Automatically assess impact against the firm's product and service taxonomy</li>
+<li>Generate first-draft policy amendments and training updates</li>
+<li>Maintain an auditable record of regulatory change responses</li>
+</ul></p>
+<p>One compliance team we worked with reduced regulatory change processing time by 73% — hours per update vs. days. More importantly, the coverage improved: no relevant regulatory change went untracked.</p>
+
+<h2>Use Case 4: Credit Decisioning Enhancement</h2>
+<p>Traditional credit scoring uses a limited set of features — credit history, income, employment status. ML models incorporate hundreds of additional signals, improving prediction accuracy while potentially reducing bias in lending decisions.</p>
+<p>The model governance requirements here are stringent. Any model used in credit decisioning must be explainable — regulators require that adverse decisions can be explained to applicants in plain English. This shapes the architecture: simpler, more interpretable models (gradient boosting over deep neural networks) or interpretability layers over complex models.</p>
+
+<h2>What's Not Working</h2>
+<p>Equally important: the AI banking use cases that look good in demos but fail in production.</p>
+<p><strong>Fully autonomous financial advice:</strong> The regulatory and liability environment makes fully autonomous advice unworkable for most firms. AI-assisted advice — where AI prepares and presents options, and a human advisor confirms — is the productive middle ground.</p>
+<p><strong>LLMs trained on proprietary financial data without guardrails:</strong> Models trained on sensitive financial data create significant regulatory and data protection risks if deployed without proper access controls, output filtering, and audit trails.</p>
+
+<h2>Implementation Priorities for Banking CTOs</h2>
+<p>If you're planning your AI roadmap for 2025-2026, prioritise in this order:</p>
+<ol>
+<li>Fraud detection uplift — highest ROI, most mature technology</li>
+<li>Customer service automation — large cost base, well-understood compliance requirements</li>
+<li>Compliance intelligence — growing regulatory burden makes this increasingly valuable</li>
+<li>Credit model enhancement — high impact but requires careful governance investment</li>
+</ol>
+    </div>
+    <div style="background:linear-gradient(135deg,#4c1d95,#831843);border-radius:16px;padding:40px;margin-top:60px;text-align:center">
+      <h3 style="color:white;font-size:24px;font-weight:700;margin-bottom:12px">Ready to implement AI in your business?</h3>
+      <p style="color:#e9d5ff;margin-bottom:24px">Get a free 1-hour AI strategy session with our team.</p>
+      <a href="/contact" style="background:white;color:#4c1d95;padding:12px 32px;border-radius:9999px;font-weight:700;text-decoration:none;display:inline-block">Get a Free AI Audit</a>
+    </div>
+    <div style="margin-top:40px;padding-top:32px;border-top:1px solid #374151">
+      <p style="color:#9ca3af;font-size:14px;margin-bottom:12px">Tags:</p>
+      <div><span style="background:#0284c7;padding:4px 12px;border-radius:9999px;color:white;font-size:13px;margin-right:8px">Banking</span><span style="background:#0284c7;padding:4px 12px;border-radius:9999px;color:white;font-size:13px;margin-right:8px">AI</span><span style="background:#0284c7;padding:4px 12px;border-radius:9999px;color:white;font-size:13px;margin-right:8px">Fintech</span><span style="background:#0284c7;padding:4px 12px;border-radius:9999px;color:white;font-size:13px;margin-right:8px">Compliance</span></div>
+    </div>
+  </div>
+</div><script src="/_next/static/chunks/webpack-0939024955e780c3.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:I[67113,[\"7177\",\"static/chunks/app/layout-1291c725304e2d25.js\"],\"ThemeProvider\"]\n3:I[15244,[],\"\"]\n4:I[43866,[],\"\"]\n6:I[86213,[],\"OutletBoundary\"]\n8:I[86213,[],\"MetadataBoundary\"]\na:I[86213,[],\"ViewportBoundary\"]\nc:I[34835,[],\"\"]\n:HL[\"/_next/static/media/569ce4b8f30dc480-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/media/93f479601ee12b01-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/css/f30152c0704fba31.css\",\"style\"]\n:HL[\"/_next/static/css/7720dc958f9d217f.css\",\"style\"]\n"])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"b\":\"pJxv8tBNGiml6bhbmt1sk\",\"p\":\"\",\"c\":[\"\",\"blogs\",\"1\"],\"i\":false,\"f\":[[[\"\",{\"children\":[\"blogs\",{\"children\":[[\"pageName\",\"1\",\"d\"],{\"children\":[\"__PAGE__\",{}]}]}]},\"$undefined\",\"$undefined\",true],[\"\",[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/f30152c0704fba31.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/7720dc958f9d217f.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_5cfdac __variable_9a8899 antialiased\",\"children\":[\"$\",\"$L2\",null,{\"attribute\":\"class\",\"children\":[\"$\",\"$L3\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L4\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[],[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":404}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]}]}]]}],{\"children\":[\"blogs\",[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L3\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"blogs\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L4\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[[\"pageName\",\"1\",\"d\"],[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L3\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"blogs\",\"children\",\"$0:f:0:1:2:children:2:children:0\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L4\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[\"__PAGE__\",[\"$\",\"$1\",\"c\",{\"children\":[\"$L5\",null,[\"$\",\"$L6\",null,{\"children\":\"$L7\"}]]}],{},null,false]},null,false]},null,false]},null,false],[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$1\",\"ig9PZkcmOg-l2bvVv9JES\",{\"children\":[[\"$\",\"$L8\",null,{\"children\":\"$L9\"}],[\"$\",\"$La\",null,{\"children\":\"$Lb\"}],[\"$\",\"meta\",null,{\"name\":\"next-size-adjust\",\"content\":\"\"}]]}]]}],false]],\"m\":\"$undefined\",\"G\":[\"$c\",\"$undefined\"],\"s\":false,\"S\":false}\n"])</script><script>self.__next_f.push([1,"b:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n9:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"Elixir\"}],[\"$\",\"link\",\"2\",{\"rel\":\"icon\",\"href\":\"/assets/img/e-logo.png\",\"sizes\":\"32x32\"}],[\"$\",\"link\",\"3\",{\"rel\":\"apple-touch-icon\",\"href\":\"/assets/img/e-logo.png\",\"sizes\":\"180x180\",\"type\":\"image/png\"}]]\n7:null\n"])</script><script>self.__next_f.push([1,"5:[\"$\",\"div\",null,{\"className\":\"min-h-screen flex items-center justify-center\",\"children\":[\"$\",\"div\",null,{\"className\":\"text-center\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"text-2xl font-bold mb-4\",\"children\":\"Blog post not found\"}],[\"$\",\"p\",null,{\"className\":\"text-gray-600\",\"children\":\"The requested blog post could not be loaded\"}]]}]}]\n"])</script><next-route-announcer style="position: absolute;"></next-route-announcer></body></html>

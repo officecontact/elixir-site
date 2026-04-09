@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en" class="light" style="color-scheme: light;"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/_next/static/css/f30152c0704fba31.css" data-precedence="next"><link rel="stylesheet" href="/_next/static/css/7720dc958f9d217f.css" data-precedence="next"><link rel="preload" as="script" fetchpriority="low" href="/_next/static/chunks/webpack-0939024955e780c3.js"><script src="/_next/static/chunks/4bd1b696-b68fc587c109cb64.js" async=""></script><script src="/_next/static/chunks/1517-04dad57932d38305.js" async=""></script><script src="/_next/static/chunks/main-app-9a3720905815865a.js" async=""></script><script src="/_next/static/chunks/app/layout-1291c725304e2d25.js" async=""></script><meta name="description" content="Plain-English guide to LLM integration for non-technical founders. How to add AI language capabilities to your product, what it costs, and what to watch out for."><meta name="next-size-adjust" content=""><title>LLM Integration: A Plain-English Guide for Non-Technical Founders | Elixir</title><link rel="icon" href="/assets/img/e-logo.png" sizes="32x32"><link rel="apple-touch-icon" href="/assets/img/e-logo.png" sizes="180x180" type="image/png"><script src="/_next/static/chunks/polyfills-42372ed130431b0a.js" nomodule=""></script><link rel="preload" href="/_next/static/media/569ce4b8f30dc480-s.p.woff2" as="font" crossorigin="" type="font/woff2"><link rel="preload" href="/_next/static/media/93f479601ee12b01-s.p.woff2" as="font" crossorigin="" type="font/woff2"><script>
+(function(){
+  var orig = history.pushState.bind(history);
+  history.pushState = function(s, t, url){
+    if(url && url !== window.location.pathname + window.location.search){
+      window.location.href = url;
+      return;
+    }
+    orig(s, t, url);
+  };
+  var rorig = history.replaceState.bind(history);
+  history.replaceState = function(s, t, url){
+    if(url && url !== window.location.pathname + window.location.search){
+      window.location.href = url;
+      return;
+    }
+    rorig(s, t, url);
+  };
+})();
+</script>
+
+<script>
+// Belt-and-suspenders: also hide via JS after hydration
+document.addEventListener('DOMContentLoaded', function(){
+  var nodes = document.querySelectorAll('div.fixed');
+  nodes.forEach(function(el){
+    if(el.style && el.id !== 'static-nav' && el.querySelector('nav')){
+      el.style.display = 'none';
+    }
+  });
+});
+</script>
+<style>
+/* hide spacer div added by HTML injection from old patches */
+body > div[style*="height:64px"] { display: none; }
+body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
+</style>
+</head><body class="__variable_5cfdac __variable_9a8899 antialiased"><script>((e,t,r,n,o,a,i,u)=>{let s=document.documentElement,l=["light","dark"];function c(t){(Array.isArray(e)?e:[e]).forEach(e=>{let r="class"===e,n=r&&a?o.map(e=>a[e]||e):o;r?(s.classList.remove(...n),s.classList.add(t)):s.setAttribute(e,t)}),u&&l.includes(t)&&(s.style.colorScheme=t)}if(n)c(n);else try{let e=localStorage.getItem(t)||r,n=i&&"system"===e?window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light":e;c(n)}catch(e){}})("class","theme","system",null,["light","dark"],null,true,true)</script><div class="bg-black min-h-screen py-20 font-sans">
+  <div class="max-w-3xl mx-auto px-6">
+    <div style="margin-bottom:24px">
+      <span style="background:#7c3aed;padding:4px 14px;border-radius:9999px;color:white;font-size:13px;font-weight:600">LLM Integration</span>
+      <span style="color:#9ca3af;font-size:14px;margin-left:12px">7 min read &middot; December 2024</span>
+    </div>
+    <h1 style="color:white;font-size:clamp(28px,5vw,44px);font-weight:800;line-height:1.2;margin-bottom:20px">LLM Integration: A Plain-English Guide for Non-Technical Founders</h1>
+    <p style="color:#d1d5db;font-size:19px;line-height:1.7;margin-bottom:32px">Everything you need to know about adding AI language capabilities to your product — without the jargon</p>
+    <img src="/assets/img/studydao.png" alt="LLM Integration: A Plain-English Guide for Non-Technical Founders" style="width:100%;border-radius:16px;margin-bottom:40px;object-fit:cover;height:320px">
+    <div style="color:#e5e7eb;font-size:17px;line-height:1.85;max-width:720px">
+      <h2>What Is an LLM and Why Does It Matter for Your Product?</h2>
+<p>A Large Language Model (LLM) is an AI system trained on vast amounts of text that can understand and generate human language at a level that was science fiction five years ago. GPT-4, Claude, and Gemini are LLMs.</p>
+<p>For product builders, LLMs are a new type of infrastructure — like cloud computing in 2010 or mobile in 2012. They enable capabilities that previously required large AI teams and millions in R&D investment to be integrated into products in weeks, via API calls.</p>
+
+<h2>What Can LLMs Do for Your Product?</h2>
+<p>The honest answer: a lot — if you're clear about what you need. LLMs excel at:
+<ul>
+<li><strong>Understanding natural language:</strong> Extracting intent, entities, and meaning from unstructured text</li>
+<li><strong>Generating text:</strong> Drafting, summarising, translating, explaining</li>
+<li><strong>Classification:</strong> Categorising, routing, triaging</li>
+<li><strong>Question answering:</strong> Answering questions based on provided context</li>
+<li><strong>Structured extraction:</strong> Pulling structured data from unstructured text (e.g., extracting key terms from a contract)</li>
+</ul></p>
+<p>They struggle with:
+<ul>
+<li>Precise arithmetic (they're language models, not calculators)</li>
+<li>Real-time information (they have a training cutoff)</li>
+<li>Consistency on long-form complex reasoning</li>
+<li>Tasks requiring factual precision without a knowledge base to retrieve from</li>
+</ul></p>
+
+<h2>How Integration Works in Practice</h2>
+<p>At its simplest, LLM integration means making an API call. You send a message to the LLM API, it sends back a response. This can be done in any programming language with an HTTP library.</p>
+<p>But production LLM integration involves more:
+<ul>
+<li><strong>System prompts:</strong> Instructions that define the LLM's behaviour for your specific use case. This is where you set the persona, define what the model should and shouldn't do, and provide context about your product.</li>
+<li><strong>Context management:</strong> Deciding what information to include in each API call — conversation history, user data, retrieved documents — given the model's context limit.</li>
+<li><strong>Output parsing:</strong> If you need structured outputs (JSON, specific formats), you need to instruct the model and parse its responses reliably.</li>
+<li><strong>Error handling:</strong> LLM APIs can fail, return unexpected responses, or timeout. Production systems need robust error handling and fallbacks.</li>
+<li><strong>Cost management:</strong> LLM API calls are charged per token. High-volume applications need careful cost monitoring and optimisation.</li>
+</ul></p>
+
+<h2>Choosing an LLM Provider</h2>
+<p>The main options in 2025:</p>
+<p><strong>OpenAI (GPT-4o):</strong> Strongest general-purpose reasoning, excellent function calling, extensive ecosystem. Premium pricing. Best for: complex reasoning, code generation, broad capabilities.</p>
+<p><strong>Anthropic (Claude 3.5 Sonnet):</strong> Strong on long-context tasks, nuanced instruction-following, and safety. Excellent for: document analysis, customer-facing applications, regulated industries.</p>
+<p><strong>Google (Gemini 1.5 Pro):</strong> Outstanding long-context window (1M tokens), strong multimodal. Best for: processing very long documents, combining text and image analysis.</p>
+<p><strong>Open source (Llama 3, Mistral):</strong> No API costs, full control, runs on your infrastructure. Requires ML engineering expertise to deploy and maintain. Best for: cost-sensitive high-volume applications, data privacy requirements.</p>
+
+<h2>What It Costs</h2>
+<p>LLM API pricing is per token (roughly 4 characters = 1 token):</p>
+<ul>
+<li>GPT-4o: ~$5 per million input tokens, ~$15 per million output tokens</li>
+<li>Claude 3.5 Sonnet: ~$3 per million input tokens, ~$15 per million output tokens</li>
+<li>GPT-4o-mini / Claude 3.5 Haiku: 10-20x cheaper, lower capability</li>
+</ul>
+<p>For a customer service application handling 10,000 conversations/day, averaging 500 tokens per conversation, you're looking at £200-400/day in API costs — significant but typically 80-90% cheaper than the human labour it replaces.</p>
+
+<h2>The Most Important Advice</h2>
+<p>Start with a clear, narrow use case. Don't try to build a general AI assistant for your product on day one. Pick one workflow — the one with the clearest ROI — build it well, measure it, and expand from there.</p>
+<p>The teams that struggle with LLM integration are usually the ones that tried to do too much too fast and ended up with a system that's mediocre at many things rather than excellent at one.</p>
+    </div>
+    <div style="background:linear-gradient(135deg,#4c1d95,#831843);border-radius:16px;padding:40px;margin-top:60px;text-align:center">
+      <h3 style="color:white;font-size:24px;font-weight:700;margin-bottom:12px">Ready to implement AI in your business?</h3>
+      <p style="color:#e9d5ff;margin-bottom:24px">Get a free 1-hour AI strategy session with our team.</p>
+      <a href="/contact" style="background:white;color:#4c1d95;padding:12px 32px;border-radius:9999px;font-weight:700;text-decoration:none;display:inline-block">Get a Free AI Audit</a>
+    </div>
+    <div style="margin-top:40px;padding-top:32px;border-top:1px solid #374151">
+      <p style="color:#9ca3af;font-size:14px;margin-bottom:12px">Tags:</p>
+      <div><span style="background:#7c3aed;padding:4px 12px;border-radius:9999px;color:white;font-size:13px;margin-right:8px">LLM</span><span style="background:#7c3aed;padding:4px 12px;border-radius:9999px;color:white;font-size:13px;margin-right:8px">AI Integration</span><span style="background:#7c3aed;padding:4px 12px;border-radius:9999px;color:white;font-size:13px;margin-right:8px">Founders</span><span style="background:#7c3aed;padding:4px 12px;border-radius:9999px;color:white;font-size:13px;margin-right:8px">Product</span></div>
+    </div>
+  </div>
+</div><script src="/_next/static/chunks/webpack-0939024955e780c3.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:I[67113,[\"7177\",\"static/chunks/app/layout-1291c725304e2d25.js\"],\"ThemeProvider\"]\n3:I[15244,[],\"\"]\n4:I[43866,[],\"\"]\n6:I[86213,[],\"OutletBoundary\"]\n8:I[86213,[],\"MetadataBoundary\"]\na:I[86213,[],\"ViewportBoundary\"]\nc:I[34835,[],\"\"]\n:HL[\"/_next/static/media/569ce4b8f30dc480-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/media/93f479601ee12b01-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/css/f30152c0704fba31.css\",\"style\"]\n:HL[\"/_next/static/css/7720dc958f9d217f.css\",\"style\"]\n"])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"b\":\"pJxv8tBNGiml6bhbmt1sk\",\"p\":\"\",\"c\":[\"\",\"blogs\",\"1\"],\"i\":false,\"f\":[[[\"\",{\"children\":[\"blogs\",{\"children\":[[\"pageName\",\"1\",\"d\"],{\"children\":[\"__PAGE__\",{}]}]}]},\"$undefined\",\"$undefined\",true],[\"\",[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/f30152c0704fba31.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"link\",\"1\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/7720dc958f9d217f.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_5cfdac __variable_9a8899 antialiased\",\"children\":[\"$\",\"$L2\",null,{\"attribute\":\"class\",\"children\":[\"$\",\"$L3\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L4\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[],[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":404}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]}]}]]}],{\"children\":[\"blogs\",[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L3\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"blogs\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L4\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[[\"pageName\",\"1\",\"d\"],[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L3\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"blogs\",\"children\",\"$0:f:0:1:2:children:2:children:0\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L4\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],{\"children\":[\"__PAGE__\",[\"$\",\"$1\",\"c\",{\"children\":[\"$L5\",null,[\"$\",\"$L6\",null,{\"children\":\"$L7\"}]]}],{},null,false]},null,false]},null,false]},null,false],[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$1\",\"ig9PZkcmOg-l2bvVv9JES\",{\"children\":[[\"$\",\"$L8\",null,{\"children\":\"$L9\"}],[\"$\",\"$La\",null,{\"children\":\"$Lb\"}],[\"$\",\"meta\",null,{\"name\":\"next-size-adjust\",\"content\":\"\"}]]}]]}],false]],\"m\":\"$undefined\",\"G\":[\"$c\",\"$undefined\"],\"s\":false,\"S\":false}\n"])</script><script>self.__next_f.push([1,"b:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n9:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"Elixir\"}],[\"$\",\"link\",\"2\",{\"rel\":\"icon\",\"href\":\"/assets/img/e-logo.png\",\"sizes\":\"32x32\"}],[\"$\",\"link\",\"3\",{\"rel\":\"apple-touch-icon\",\"href\":\"/assets/img/e-logo.png\",\"sizes\":\"180x180\",\"type\":\"image/png\"}]]\n7:null\n"])</script><script>self.__next_f.push([1,"5:[\"$\",\"div\",null,{\"className\":\"min-h-screen flex items-center justify-center\",\"children\":[\"$\",\"div\",null,{\"className\":\"text-center\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"text-2xl font-bold mb-4\",\"children\":\"Blog post not found\"}],[\"$\",\"p\",null,{\"className\":\"text-gray-600\",\"children\":\"The requested blog post could not be loaded\"}]]}]}]\n"])</script><next-route-announcer style="position: absolute;"></next-route-announcer></body></html>
