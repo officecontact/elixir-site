@@ -152,21 +152,19 @@ var EX_SECTIONS=[{id:"ex-stats",html:"<div id=\"ex-stats\" class=\"ex-s\">\n  <d
     }).observe(root,{childList:true,subtree:true});
   }
 
-  /* boot: try on DOMContentLoaded, load, and multiple delays */
-  var done=false;
+  /* boot: retry on every delay — re-inject if React hydration removed sections */
   function attempt(){
-    if(done) return;
-    done=injectAll();
+    var missing=EX_SECTIONS.some(function(s){return !document.getElementById(s.id);});
+    if(missing) injectAll();
   }
   document.addEventListener('DOMContentLoaded', function(){
     attempt();
-    [100,300,600,1000,1800,3000].forEach(function(t){ setTimeout(attempt,t); });
+    [100,300,600,1000,1800,3000,5000].forEach(function(t){ setTimeout(attempt,t); });
   });
   window.addEventListener('load', function(){
     attempt();
     setTimeout(function(){ attempt(); watchDOM(); },200);
-    setTimeout(attempt,800);
-    setTimeout(attempt,2000);
+    [500,1000,2000,4000].forEach(function(t){ setTimeout(attempt,t); });
   });
 })();
 </script>
