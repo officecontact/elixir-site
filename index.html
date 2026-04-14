@@ -333,6 +333,76 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
   .ex-cta-right { justify-self: start; }
 }
 
+/* ─── SIGNATURE BANNER (interactive particle mesh) ─── */
+.ex-banner-sec { padding: 0 !important; min-height: 620px; position: relative;
+  background: radial-gradient(ellipse 120% 80% at 50% 40%, #160533 0%, #030014 70%); }
+.ex-banner-sec .ex-wrap { max-width: 100% !important; padding: 0 !important; }
+.ex-mesh { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  z-index: 1; cursor: crosshair; }
+.ex-banner-overlay { position: relative; z-index: 2; max-width: 1200px;
+  margin: 0 auto; padding: 120px 32px 100px; pointer-events: none; }
+.ex-banner-overlay > * { pointer-events: auto; }
+.ex-banner-kicker { display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--ex-mono); font-size: 11px; letter-spacing: .28em;
+  text-transform: uppercase; color: rgba(255,255,255,.7);
+  padding: 10px 18px; border: 1px solid rgba(255,255,255,.14);
+  border-radius: 100px; backdrop-filter: blur(12px);
+  background: rgba(255,255,255,.03); margin-bottom: 36px;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity 1s .3s, transform 1s cubic-bezier(.2,.6,.2,1) .3s; }
+.ex-banner-kicker::before { content:''; width: 8px; height: 8px; border-radius: 50%;
+  background: #22c55e; box-shadow: 0 0 12px #22c55e; animation: exLivePulse 2s infinite; }
+@keyframes exLivePulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+.ex-banner-sec.in .ex-banner-kicker { opacity: 1; transform: none; }
+.ex-banner-h { font-family: var(--ex-sans); font-weight: 700;
+  font-size: clamp(56px, 9vw, 128px); line-height: .92; letter-spacing: -.045em;
+  margin: 0 0 28px; color: #fff; max-width: 12ch;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 1.4s .5s, transform 1.4s cubic-bezier(.2,.6,.2,1) .5s; }
+.ex-banner-sec.in .ex-banner-h { opacity: 1; transform: none; }
+.ex-banner-h em { font-style: normal; font-weight: 700;
+  background: linear-gradient(110deg, #ec4899 0%, #a855f7 50%, #22d3ee 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  position: relative; display: inline-block; }
+.ex-banner-h em::after { content:''; position: absolute; left: 0; right: 0; bottom: -6px;
+  height: 3px; background: linear-gradient(90deg, #ec4899, #a855f7, #22d3ee);
+  border-radius: 2px; transform: scaleX(0); transform-origin: left;
+  transition: transform 1.4s cubic-bezier(.2,.6,.2,1) 1.3s; }
+.ex-banner-sec.in .ex-banner-h em::after { transform: scaleX(1); }
+.ex-banner-sub { font-size: clamp(16px, 1.6vw, 22px); line-height: 1.5;
+  color: rgba(246,244,255,.72); max-width: 640px; margin: 0 0 48px;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 1.2s .7s, transform 1.2s cubic-bezier(.2,.6,.2,1) .7s; }
+.ex-banner-sec.in .ex-banner-sub { opacity: 1; transform: none; }
+.ex-banner-sub strong { color: #fff; font-weight: 600; }
+.ex-banner-cta { display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 1.2s .9s, transform 1.2s cubic-bezier(.2,.6,.2,1) .9s; }
+.ex-banner-sec.in .ex-banner-cta { opacity: 1; transform: none; }
+.ex-banner-hint { font-family: var(--ex-mono); font-size: 11px; letter-spacing: .28em;
+  text-transform: uppercase; color: rgba(255,255,255,.5);
+  display: flex; align-items: center; gap: 10px; }
+.ex-banner-hint::after { content: ''; width: 1px; height: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.5), transparent);
+  animation: exScrollHint 2s ease-in-out infinite; transform-origin: top; }
+@keyframes exScrollHint { 0%,100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(.3); opacity: .3; } }
+.ex-banner-metrics { position: absolute; bottom: 48px; right: 32px;
+  display: flex; gap: 36px; z-index: 3; pointer-events: none;
+  opacity: 0; transition: opacity 1.4s 1.2s; }
+.ex-banner-sec.in .ex-banner-metrics { opacity: 1; }
+.ex-bm { text-align: right; }
+.ex-bm-n { font-family: var(--ex-sans); font-weight: 700; font-size: 28px;
+  color: #fff; line-height: 1; letter-spacing: -.02em;
+  background: linear-gradient(180deg, #fff, rgba(236,72,153,.6));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.ex-bm-l { font-family: var(--ex-mono); font-size: 10px; letter-spacing: .22em;
+  color: rgba(255,255,255,.5); margin-top: 6px; text-transform: uppercase; }
+@media (max-width: 860px){
+  .ex-banner-sec { min-height: 520px; }
+  .ex-banner-overlay { padding: 80px 24px 60px; }
+  .ex-banner-metrics { display: none; }
+}
+
 /* ─── HERO VIZ (big animated panel per chapter) ─── */
 .ex-hero-viz { width: 100%; height: clamp(300px, 34vw, 440px);
   margin-bottom: 72px; border-radius: 20px;
@@ -466,6 +536,29 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
   };
 
   var SPARK = '<svg class="ex-stat-spark" viewBox="0 0 52 18"><path d="M 2 14 L 12 9 L 20 12 L 30 4 L 40 8 L 50 2"/></svg>';
+
+  /* ═══════════ SIGNATURE BANNER ═══════════ */
+  var bannerHTML = `
+<section id="ex-banner" class="ex-sec ex-banner-sec ex-rv">
+  <div class="ex-wrap">
+    <canvas class="ex-mesh" id="ex-mesh"></canvas>
+    <div class="ex-banner-overlay">
+      <span class="ex-banner-kicker">Elixir &middot; Live engagements worldwide</span>
+      <h2 class="ex-banner-h">Intelligence, <em>compounding</em>.</h2>
+      <p class="ex-banner-sub">Vibe-coded AI systems. Senior-only teams. <strong>5&times; faster</strong> and <strong>10&times; cheaper</strong> than traditional delivery.</p>
+      <div class="ex-banner-cta">
+        <a href="/contact-us" class="ex-btn ex-btn-p">Book a scoping call</a>
+        <a href="#ex-stats" class="ex-btn ex-btn-s">See the numbers</a>
+        <span class="ex-banner-hint">scroll</span>
+      </div>
+    </div>
+    <div class="ex-banner-metrics">
+      <div class="ex-bm"><div class="ex-bm-n">120+</div><div class="ex-bm-l">Engagements</div></div>
+      <div class="ex-bm"><div class="ex-bm-n">4</div><div class="ex-bm-l">Continents</div></div>
+      <div class="ex-bm"><div class="ex-bm-n">98%</div><div class="ex-bm-l">Retention</div></div>
+    </div>
+  </div>
+</section>`;
 
   /* ═══════════ HERO VISUALS (big animated panels) ═══════════ */
   var HERO = {};
@@ -851,6 +944,7 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
 </section>`;
 
   var SECTIONS = [
+    { id: 'ex-banner', html: bannerHTML },
     { id: 'ex-stats',  html: statsHTML },
     { id: 'ex-why',    html: whyHTML },
     { id: 'ex-ind',    html: indHTML },
@@ -976,10 +1070,117 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
     document.querySelectorAll('.ex-chap-art:not(.in)').forEach(function(el){ el.classList.add('in'); });
   }
 
+  /* ═══════════ PARTICLE MESH ═══════════ */
+  var meshStarted = false;
+  function initMesh(){
+    if (meshStarted) return;
+    var c = document.getElementById('ex-mesh');
+    if (!c) return;
+    meshStarted = true;
+    var ctx = c.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = 0, h = 0;
+    function resize(){
+      w = c.offsetWidth; h = c.offsetHeight;
+      if (!w || !h) return;
+      c.width = Math.floor(w * dpr); c.height = Math.floor(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var N = Math.min(110, Math.max(60, Math.floor(w * h / 11000)));
+    var P = [];
+    for (var i = 0; i < N; i++){
+      P.push({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - .5) * .4, vy: (Math.random() - .5) * .4,
+        r: .6 + Math.random() * 1.6,
+        hue: Math.random()
+      });
+    }
+
+    var mouse = { x: -9999, y: -9999, active: false };
+    c.addEventListener('pointermove', function(e){
+      var r = c.getBoundingClientRect();
+      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+      mouse.active = true;
+    });
+    c.addEventListener('pointerleave', function(){ mouse.active = false; mouse.x = -9999; mouse.y = -9999; });
+
+    var MAX_DIST = 150;
+    function tick(){
+      if (!w || !h){ requestAnimationFrame(tick); return; }
+      ctx.clearRect(0, 0, w, h);
+
+      /* subtle atmospheric glow behind lines */
+      var bg = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, Math.max(w, h)/1.3);
+      bg.addColorStop(0, 'rgba(168,85,247,.05)');
+      bg.addColorStop(1, 'rgba(3,0,20,0)');
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, w, h);
+
+      /* connections */
+      for (var i = 0; i < N; i++){
+        for (var j = i + 1; j < N; j++){
+          var dx = P[i].x - P[j].x, dy = P[i].y - P[j].y;
+          var d2 = dx*dx + dy*dy;
+          if (d2 < MAX_DIST * MAX_DIST){
+            var d = Math.sqrt(d2);
+            var a = (1 - d / MAX_DIST) * .35;
+            var hue = (P[i].hue + P[j].hue) / 2;
+            var col = hue < .33 ? [236,72,153] : hue < .66 ? [168,85,247] : [34,211,238];
+            ctx.strokeStyle = 'rgba(' + col[0] + ',' + col[1] + ',' + col[2] + ',' + a + ')';
+            ctx.lineWidth = .8;
+            ctx.beginPath();
+            ctx.moveTo(P[i].x, P[i].y);
+            ctx.lineTo(P[j].x, P[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      /* particles */
+      for (var k = 0; k < N; k++){
+        var p = P[k];
+        if (mouse.active){
+          var mdx = mouse.x - p.x, mdy = mouse.y - p.y;
+          var md = Math.sqrt(mdx*mdx + mdy*mdy);
+          if (md < 220 && md > 0.1){
+            var force = (1 - md / 220) * .22;
+            p.vx += (mdx / md) * force;
+            p.vy += (mdy / md) * force;
+          }
+        }
+        p.vx *= .97; p.vy *= .97;
+        /* keep some base drift */
+        if (Math.abs(p.vx) < .1) p.vx += (Math.random() - .5) * .05;
+        if (Math.abs(p.vy) < .1) p.vy += (Math.random() - .5) * .05;
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < -20) p.x = w + 20; else if (p.x > w + 20) p.x = -20;
+        if (p.y < -20) p.y = h + 20; else if (p.y > h + 20) p.y = -20;
+
+        var col2 = p.hue < .33 ? '236,72,153' : p.hue < .66 ? '168,85,247' : '34,211,238';
+        var g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
+        g.addColorStop(0, 'rgba(255,255,255,.95)');
+        g.addColorStop(.5, 'rgba(' + col2 + ',.7)');
+        g.addColorStop(1, 'rgba(' + col2 + ',0)');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
   function injectAll(){
     for (var i = SECTIONS.length - 1; i >= 0; i--) insertSection(SECTIONS[i]);
     hideOld();
     setupAnimations();
+    setTimeout(initMesh, 100);
   }
 
   function boot(){
