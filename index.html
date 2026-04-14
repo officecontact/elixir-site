@@ -333,6 +333,94 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
   .ex-cta-right { justify-self: start; }
 }
 
+/* ─── HERO VIZ (big animated panel per chapter) ─── */
+.ex-hero-viz { width: 100%; height: clamp(300px, 34vw, 440px);
+  margin-bottom: 72px; border-radius: 20px;
+  border: 1px solid var(--ex-rule); overflow: hidden; position: relative;
+  background:
+    radial-gradient(ellipse 70% 90% at 50% 50%, rgba(168,85,247,.18), transparent 70%),
+    linear-gradient(145deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+}
+.ex-hero-viz::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at 30% 20%, rgba(236,72,153,.15), transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(34,211,238,.12), transparent 50%);
+}
+.ex-hero-viz svg { width: 100%; height: 100%; display: block; position: relative; z-index: 1; }
+
+/* small chapter sigil becomes redundant next to hero viz */
+.ex-chap-art { display: none; }
+
+/* bar chart — industries */
+.ex-hero-viz .barTrack { fill: rgba(255,255,255,.05); }
+.ex-hero-viz .barFill { transform-origin: left; transform: scaleX(0);
+  transition: transform 1.6s cubic-bezier(.2,.7,.2,1) .2s; }
+.ex-hero-viz.in .barFill { transform: scaleX(1); }
+.ex-hero-viz.in .barFill[data-d="1"] { transition-delay: .35s; }
+.ex-hero-viz.in .barFill[data-d="2"] { transition-delay: .5s; }
+.ex-hero-viz.in .barFill[data-d="3"] { transition-delay: .65s; }
+.ex-hero-viz.in .barFill[data-d="4"] { transition-delay: .8s; }
+
+/* gauges — cases */
+.ex-hero-viz .gaugeArc { stroke-dasharray: 440; stroke-dashoffset: 440;
+  transition: stroke-dashoffset 2s cubic-bezier(.2,.7,.2,1) .3s; }
+.ex-hero-viz.in .gaugeArc.g1 { stroke-dashoffset: 140; }
+.ex-hero-viz.in .gaugeArc.g2 { stroke-dashoffset: 57; transition-delay: .5s; }
+.ex-hero-viz.in .gaugeArc.g3 { stroke-dashoffset: 35; transition-delay: .7s; }
+
+/* area chart — stats */
+.ex-hero-viz .areaLine { stroke-dasharray: 2200; stroke-dashoffset: 2200;
+  transition: stroke-dashoffset 2.6s cubic-bezier(.3,.1,.2,1) .2s; }
+.ex-hero-viz.in .areaLine { stroke-dashoffset: 0; }
+.ex-hero-viz .areaFill { opacity: 0; transition: opacity 1.4s 1.2s; }
+.ex-hero-viz.in .areaFill { opacity: 1; }
+.ex-hero-viz .areaDot { opacity: 0; transform-origin: center;
+  transition: opacity .6s 2.2s; transform-box: fill-box; }
+.ex-hero-viz.in .areaDot { opacity: 1; }
+.ex-hero-viz.in .areaDot.pulse { animation: exPulse 2.4s ease-in-out infinite 2.4s; }
+@keyframes exPulse { 0%,100% { r: 5; opacity: 1; } 50% { r: 9; opacity: .6; } }
+
+/* network — approach */
+.ex-hero-viz .netPath { stroke-dasharray: 1000; stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 1.8s cubic-bezier(.3,.1,.2,1) .3s; }
+.ex-hero-viz.in .netPath { stroke-dashoffset: 0; }
+.ex-hero-viz .netNode { transform-origin: center; transform-box: fill-box;
+  opacity: 0; transition: opacity .8s; }
+.ex-hero-viz.in .netNode { opacity: 1; }
+.ex-hero-viz.in .netNode.n1 { transition-delay: 1.3s; animation: exFloat 5s ease-in-out infinite 1.3s; }
+.ex-hero-viz.in .netNode.n2 { transition-delay: 1.7s; animation: exFloat 5s ease-in-out infinite 2.0s; }
+.ex-hero-viz.in .netNode.n3 { transition-delay: 2.1s; animation: exFloat 5s ease-in-out infinite 2.7s; }
+@keyframes exFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.ex-hero-viz .netPulse { transform-origin: center; transform-box: fill-box; opacity: 0; }
+.ex-hero-viz.in .netPulse { animation: exPulseRing 3s ease-out infinite; }
+.ex-hero-viz.in .netPulse.p2 { animation-delay: 1s; }
+.ex-hero-viz.in .netPulse.p3 { animation-delay: 2s; }
+@keyframes exPulseRing { 0% { transform: scale(0.6); opacity: .7; } 100% { transform: scale(1.8); opacity: 0; } }
+
+/* orbital — cta */
+.ex-hero-viz .orbRing { transform-origin: 600px 220px; opacity: 0;
+  transition: opacity 1s .3s; }
+.ex-hero-viz.in .orbRing { opacity: 1; }
+.ex-hero-viz.in .orbRing.slow { animation: exSpin 24s linear infinite; }
+.ex-hero-viz.in .orbRing.med { animation: exSpin 16s linear infinite reverse; }
+.ex-hero-viz.in .orbRing.fast { animation: exSpin 10s linear infinite; }
+@keyframes exSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.ex-hero-viz .orbCore { transform-origin: center; transform-box: fill-box; }
+.ex-hero-viz.in .orbCore { animation: exCorePulse 4s ease-in-out infinite; }
+@keyframes exCorePulse { 0%,100% { opacity: .3; } 50% { opacity: .6; } }
+
+/* testi — big quote */
+.ex-hero-viz .qMark { opacity: 0; transform: scale(.85); transform-origin: center;
+  transition: opacity 1.2s .2s, transform 1.4s cubic-bezier(.2,.7,.2,1) .2s;
+  transform-box: fill-box; }
+.ex-hero-viz.in .qMark { opacity: 1; transform: scale(1); }
+.ex-hero-viz .qDot { opacity: 0; transition: opacity .6s; }
+.ex-hero-viz.in .qDot { opacity: 1; transition-delay: 1s; }
+
+@media (max-width: 860px){
+  .ex-hero-viz { height: 260px; margin-bottom: 48px; border-radius: 14px; }
+}
+
 /* ─── Layout defense ─── */
 #ex-stats, #ex-why, #ex-ind, #ex-cases, #ex-testi, #ex-cta {
   display: block !important; width: 100% !important;
@@ -379,44 +467,218 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
 
   var SPARK = '<svg class="ex-stat-spark" viewBox="0 0 52 18"><path d="M 2 14 L 12 9 L 20 12 L 30 4 L 40 8 L 50 2"/></svg>';
 
+  /* ═══════════ HERO VISUALS (big animated panels) ═══════════ */
+  var HERO = {};
+
+  HERO.stats = `
+<svg viewBox="0 0 1200 440" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="areaG1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ec4899" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#ec4899" stop-opacity="0"/></linearGradient>
+    <linearGradient id="areaG2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity=".45"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/></linearGradient>
+    <linearGradient id="areaG3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity=".4"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/></linearGradient>
+  </defs>
+  <g stroke="rgba(255,255,255,.06)" stroke-width="1">
+    <line x1="80" y1="80" x2="1140" y2="80"/><line x1="80" y1="170" x2="1140" y2="170"/>
+    <line x1="80" y1="260" x2="1140" y2="260"/><line x1="80" y1="350" x2="1140" y2="350"/>
+  </g>
+  <g fill="rgba(255,255,255,.38)" font-size="11" font-family="JetBrains Mono,monospace" text-anchor="end">
+    <text x="70" y="85">100</text><text x="70" y="175">75</text>
+    <text x="70" y="265">50</text><text x="70" y="355">25</text>
+  </g>
+  <g fill="rgba(255,255,255,.38)" font-size="11" font-family="JetBrains Mono,monospace" text-anchor="middle">
+    <text x="80" y="385">2019</text><text x="280" y="385">2020</text>
+    <text x="480" y="385">2021</text><text x="680" y="385">2022</text>
+    <text x="880" y="385">2023</text><text x="1080" y="385">2024</text>
+  </g>
+  <path class="areaFill" fill="url(#areaG3)" d="M 80 310 C 180 300 260 290 380 285 S 580 260 680 240 S 880 200 1080 170 L 1140 170 L 1140 350 L 80 350 Z"/>
+  <path class="areaLine" fill="none" stroke="#22d3ee" stroke-width="1.8" d="M 80 310 C 180 300 260 290 380 285 S 580 260 680 240 S 880 200 1080 170"/>
+  <path class="areaFill" fill="url(#areaG2)" d="M 80 260 C 180 240 260 230 380 210 S 580 180 680 150 S 880 110 1080 90 L 1140 90 L 1140 350 L 80 350 Z"/>
+  <path class="areaLine" fill="none" stroke="#a855f7" stroke-width="2" d="M 80 260 C 180 240 260 230 380 210 S 580 180 680 150 S 880 110 1080 90"/>
+  <path class="areaFill" fill="url(#areaG1)" d="M 80 200 C 180 180 260 150 380 140 S 580 110 680 90 S 880 60 1080 50 L 1140 50 L 1140 350 L 80 350 Z"/>
+  <path class="areaLine" fill="none" stroke="#ec4899" stroke-width="2.2" d="M 80 200 C 180 180 260 150 380 140 S 580 110 680 90 S 880 60 1080 50"/>
+  <circle class="areaDot pulse" cx="1080" cy="50" r="5" fill="#ec4899"/>
+  <circle class="areaDot" cx="1080" cy="90" r="4" fill="#a855f7"/>
+  <circle class="areaDot" cx="1080" cy="170" r="4" fill="#22d3ee"/>
+  <g font-size="11" font-family="JetBrains Mono,monospace" fill="rgba(255,255,255,.68)">
+    <circle cx="100" cy="30" r="4" fill="#ec4899"/><text x="112" y="34">ENGAGEMENTS</text>
+    <circle cx="280" cy="30" r="4" fill="#a855f7"/><text x="292" y="34">IN PRODUCTION</text>
+    <circle cx="470" cy="30" r="4" fill="#22d3ee"/><text x="482" y="34">RENEWALS</text>
+  </g>
+</svg>`;
+
+  HERO.why = `
+<svg viewBox="0 0 1200 440" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="nodeG1"><stop offset="0%" stop-color="#ec4899" stop-opacity=".8"/><stop offset="100%" stop-color="#ec4899" stop-opacity="0"/></radialGradient>
+    <radialGradient id="nodeG2"><stop offset="0%" stop-color="#a855f7" stop-opacity=".8"/><stop offset="100%" stop-color="#a855f7" stop-opacity="0"/></radialGradient>
+    <radialGradient id="nodeG3"><stop offset="0%" stop-color="#22d3ee" stop-opacity=".8"/><stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/></radialGradient>
+  </defs>
+  <path id="pA" class="netPath" fill="none" stroke="rgba(236,72,153,.45)" stroke-width="1.4" stroke-dasharray="4 6" d="M 260 230 Q 600 70 940 230"/>
+  <path id="pB" class="netPath" fill="none" stroke="rgba(168,85,247,.45)" stroke-width="1.4" stroke-dasharray="4 6" d="M 940 230 Q 600 440 260 230"/>
+  <path id="pC" class="netPath" fill="none" stroke="rgba(34,211,238,.45)" stroke-width="1.4" stroke-dasharray="4 6" d="M 260 230 L 940 230"/>
+  <g class="netNode n1">
+    <circle cx="260" cy="230" r="90" fill="url(#nodeG1)"/>
+    <circle class="netPulse" cx="260" cy="230" r="46" fill="none" stroke="#ec4899" stroke-width="1"/>
+    <circle cx="260" cy="230" r="42" fill="rgba(255,255,255,.04)" stroke="#ec4899" stroke-width="1.6"/>
+    <text x="260" y="228" fill="#fff" font-size="12" font-weight="600" font-family="Inter,sans-serif" text-anchor="middle" letter-spacing="1">OUTCOME</text>
+    <text x="260" y="246" fill="rgba(255,255,255,.6)" font-size="10" font-family="JetBrains Mono,monospace" text-anchor="middle">P · 01</text>
+  </g>
+  <g class="netNode n2">
+    <circle cx="600" cy="100" r="90" fill="url(#nodeG2)"/>
+    <circle class="netPulse p2" cx="600" cy="100" r="46" fill="none" stroke="#a855f7" stroke-width="1"/>
+    <circle cx="600" cy="100" r="42" fill="rgba(255,255,255,.04)" stroke="#a855f7" stroke-width="1.6"/>
+    <text x="600" y="98" fill="#fff" font-size="12" font-weight="600" font-family="Inter,sans-serif" text-anchor="middle" letter-spacing="1">SENIORITY</text>
+    <text x="600" y="116" fill="rgba(255,255,255,.6)" font-size="10" font-family="JetBrains Mono,monospace" text-anchor="middle">P · 02</text>
+  </g>
+  <g class="netNode n3">
+    <circle cx="940" cy="230" r="90" fill="url(#nodeG3)"/>
+    <circle class="netPulse p3" cx="940" cy="230" r="46" fill="none" stroke="#22d3ee" stroke-width="1"/>
+    <circle cx="940" cy="230" r="42" fill="rgba(255,255,255,.04)" stroke="#22d3ee" stroke-width="1.6"/>
+    <text x="940" y="228" fill="#fff" font-size="12" font-weight="600" font-family="Inter,sans-serif" text-anchor="middle" letter-spacing="1">SPEED</text>
+    <text x="940" y="246" fill="rgba(255,255,255,.6)" font-size="10" font-family="JetBrains Mono,monospace" text-anchor="middle">P · 03</text>
+  </g>
+  <circle r="5" fill="#ec4899"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#pA"/></animateMotion></circle>
+  <circle r="5" fill="#22d3ee"><animateMotion dur="4s" repeatCount="indefinite"><mpath href="#pB"/></animateMotion></circle>
+  <circle r="4" fill="#a855f7"><animateMotion dur="3s" repeatCount="indefinite"><mpath href="#pC"/></animateMotion></circle>
+</svg>`;
+
+  HERO.ind = `
+<svg viewBox="0 0 1200 440" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="barG1" x1="0" x2="1"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#f472b6"/></linearGradient>
+    <linearGradient id="barG2" x1="0" x2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#c084fc"/></linearGradient>
+    <linearGradient id="barG3" x1="0" x2="1"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#818cf8"/></linearGradient>
+    <linearGradient id="barG4" x1="0" x2="1"><stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#67e8f9"/></linearGradient>
+    <linearGradient id="barG5" x1="0" x2="1"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient>
+  </defs>
+  <g fill="rgba(246,244,255,.9)" font-size="14" font-family="Inter,sans-serif" font-weight="500">
+    <text x="40" y="60">Finance</text><text x="40" y="140">Healthcare</text>
+    <text x="40" y="220">Legal</text><text x="40" y="300">Commerce</text>
+    <text x="40" y="380">Industrial</text>
+  </g>
+  <g>
+    <rect class="barTrack" x="280" y="40" width="820" height="30" rx="15"/>
+    <rect class="barTrack" x="280" y="120" width="820" height="30" rx="15"/>
+    <rect class="barTrack" x="280" y="200" width="820" height="30" rx="15"/>
+    <rect class="barTrack" x="280" y="280" width="820" height="30" rx="15"/>
+    <rect class="barTrack" x="280" y="360" width="820" height="30" rx="15"/>
+  </g>
+  <g>
+    <rect class="barFill" x="280" y="40" width="671" height="30" rx="15" fill="url(#barG1)"/>
+    <rect class="barFill" data-d="1" x="280" y="120" width="522" height="30" rx="15" fill="url(#barG2)"/>
+    <rect class="barFill" data-d="2" x="280" y="200" width="410" height="30" rx="15" fill="url(#barG3)"/>
+    <rect class="barFill" data-d="3" x="280" y="280" width="820" height="30" rx="15" fill="url(#barG4)"/>
+    <rect class="barFill" data-d="4" x="280" y="360" width="336" height="30" rx="15" fill="url(#barG5)"/>
+  </g>
+  <g fill="#fff" font-size="14" font-family="JetBrains Mono,monospace" font-weight="600" text-anchor="end">
+    <text x="1140" y="60">18</text><text x="1140" y="140">14</text>
+    <text x="1140" y="220">11</text><text x="1140" y="300">22</text>
+    <text x="1140" y="380">9</text>
+  </g>
+</svg>`;
+
+  HERO.cases = `
+<svg viewBox="0 0 1200 440" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="gaG1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#a855f7"/></linearGradient>
+    <linearGradient id="gaG2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient>
+    <linearGradient id="gaG3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#6366f1"/></linearGradient>
+  </defs>
+  <g transform="translate(240 220)">
+    <circle r="120" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="14"/>
+    <circle class="gaugeArc g1" r="120" fill="none" stroke="url(#gaG1)" stroke-width="14" stroke-linecap="round" transform="rotate(-90)"/>
+    <text y="4" text-anchor="middle" fill="#fff" font-size="56" font-weight="700" font-family="Inter,sans-serif" letter-spacing="-1">2.7×</text>
+    <text y="34" text-anchor="middle" fill="rgba(255,255,255,.55)" font-size="11" font-family="JetBrains Mono,monospace" letter-spacing="3">FINTECH</text>
+  </g>
+  <g transform="translate(600 220)">
+    <circle r="120" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="14"/>
+    <circle class="gaugeArc g2" r="120" fill="none" stroke="url(#gaG2)" stroke-width="14" stroke-linecap="round" transform="rotate(-90)"/>
+    <text y="4" text-anchor="middle" fill="#fff" font-size="56" font-weight="700" font-family="Inter,sans-serif" letter-spacing="-1">87%</text>
+    <text y="34" text-anchor="middle" fill="rgba(255,255,255,.55)" font-size="11" font-family="JetBrains Mono,monospace" letter-spacing="3">INSURANCE</text>
+  </g>
+  <g transform="translate(960 220)">
+    <circle r="120" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="14"/>
+    <circle class="gaugeArc g3" r="120" fill="none" stroke="url(#gaG3)" stroke-width="14" stroke-linecap="round" transform="rotate(-90)"/>
+    <text y="4" text-anchor="middle" fill="#fff" font-size="48" font-weight="700" font-family="Inter,sans-serif" letter-spacing="-1">12ms</text>
+    <text y="34" text-anchor="middle" fill="rgba(255,255,255,.55)" font-size="11" font-family="JetBrains Mono,monospace" letter-spacing="3">INDUSTRIAL</text>
+  </g>
+</svg>`;
+
+  HERO.testi = `
+<svg viewBox="0 0 1200 440" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="qG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ec4899" stop-opacity=".7"/>
+      <stop offset="50%" stop-color="#a855f7" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity=".55"/></linearGradient>
+  </defs>
+  <text class="qMark" x="600" y="360" text-anchor="middle" font-size="460" font-family="Georgia,serif" font-weight="400" fill="url(#qG)">&#8220;</text>
+  <g fill="rgba(255,255,255,.28)">
+    <circle class="qDot" cx="180" cy="130" r="3"/><circle class="qDot" cx="260" cy="190" r="2"/>
+    <circle class="qDot" cx="1020" cy="150" r="3"/><circle class="qDot" cx="940" cy="210" r="2"/>
+    <circle class="qDot" cx="180" cy="320" r="2"/><circle class="qDot" cx="1020" cy="300" r="2"/>
+    <circle class="qDot" cx="120" cy="220" r="2"/><circle class="qDot" cx="1080" cy="230" r="2"/>
+  </g>
+</svg>`;
+
+  HERO.cta = `
+<svg viewBox="0 0 1200 440" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="coreG"><stop offset="0%" stop-color="#ec4899" stop-opacity=".8"/><stop offset="100%" stop-color="#ec4899" stop-opacity="0"/></radialGradient>
+    <linearGradient id="coreR" x1="0" x2="1"><stop offset="0%" stop-color="#ec4899"/><stop offset="100%" stop-color="#a855f7"/></linearGradient>
+  </defs>
+  <g class="orbCore"><circle cx="600" cy="220" r="190" fill="url(#coreG)"/></g>
+  <g class="orbRing slow">
+    <circle cx="600" cy="220" r="170" fill="none" stroke="rgba(236,72,153,.35)" stroke-width="1" stroke-dasharray="4 8"/>
+    <circle cx="770" cy="220" r="7" fill="#ec4899"/>
+  </g>
+  <g class="orbRing med">
+    <circle cx="600" cy="220" r="125" fill="none" stroke="rgba(168,85,247,.45)" stroke-width="1" stroke-dasharray="3 6"/>
+    <circle cx="475" cy="220" r="6" fill="#a855f7"/>
+  </g>
+  <g class="orbRing fast">
+    <circle cx="600" cy="220" r="80" fill="none" stroke="rgba(34,211,238,.55)" stroke-width="1" stroke-dasharray="2 5"/>
+    <circle cx="600" cy="300" r="5" fill="#22d3ee"/>
+  </g>
+  <circle cx="600" cy="220" r="34" fill="#030014" stroke="url(#coreR)" stroke-width="2"/>
+  <text x="600" y="227" text-anchor="middle" fill="#fff" font-size="14" font-weight="700" font-family="Inter,sans-serif" letter-spacing="2">EX</text>
+</svg>`;
+
   /* ═══════════ SECTIONS ═══════════ */
 
   var statsHTML = `
 <section id="ex-stats" class="ex-sec">
   <div class="ex-wrap">
     <div class="ex-chap ex-rv">
-      <div>
-        <span class="ex-chap-num">Chapter 01<small>The Proof</small></span>
-        <div class="ex-chap-art">${CHAP_ART.stats}</div>
-      </div>
-      <div>
-        <h2 class="ex-h2">Numbers that <em>compound</em>, <br/>not just <span class="uline">impress</span>.</h2>
-        <p class="ex-lede">Seven years, four continents, and a quiet ledger of systems that stayed in production long after the pitch deck was archived.</p>
-      </div>
+      <div><span class="ex-chap-num">01 &mdash; Proof</span></div>
+      <div><h2 class="ex-h2">Numbers that <em>compound</em>.</h2></div>
     </div>
+    <div class="ex-hero-viz ex-rv">${HERO.stats}</div>
     <div class="ex-stats-grid">
       <div class="ex-stat ex-rv" data-count="120">
         <div class="ex-stat-num"><span class="ex-count">0</span><sup>+</sup></div>
         <div class="ex-stat-lbl">Engagements</div>
-        <p class="ex-stat-sub">Shipped to revenue across four continents.</p>
         ${SPARK}
       </div>
       <div class="ex-stat ex-rv" data-d="1" data-count="5">
         <div class="ex-stat-num"><span class="ex-count">0</span><sup>×</sup></div>
-        <div class="ex-stat-lbl">Faster Delivery</div>
-        <p class="ex-stat-sub">Vibe-coded pipelines vs. traditional outsourcing.</p>
+        <div class="ex-stat-lbl">Faster</div>
         ${SPARK}
       </div>
       <div class="ex-stat ex-rv" data-d="2" data-count="10">
         <div class="ex-stat-num"><span class="ex-count">0</span><sup>×</sup></div>
-        <div class="ex-stat-lbl">Lower Cost</div>
-        <p class="ex-stat-sub">Same rigour; a fraction of the invoice.</p>
+        <div class="ex-stat-lbl">Cheaper</div>
         ${SPARK}
       </div>
       <div class="ex-stat ex-rv" data-d="3" data-count="98">
         <div class="ex-stat-num"><span class="ex-count">0</span><sup>%</sup></div>
         <div class="ex-stat-lbl">Retention</div>
-        <p class="ex-stat-sub">Clients who brief us for the next initiative.</p>
         ${SPARK}
       </div>
     </div>
@@ -427,36 +689,25 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
 <section id="ex-why" class="ex-sec alt">
   <div class="ex-wrap">
     <div class="ex-chap ex-rv">
-      <div>
-        <span class="ex-chap-num">Chapter 02<small>The Approach</small></span>
-        <div class="ex-chap-art">${CHAP_ART.why}</div>
-      </div>
-      <div>
-        <h2 class="ex-h2">Three principles, <br/>carried into <em>every engagement</em>.</h2>
-        <p class="ex-lede">The difference between a deck and a deployment is almost always discipline. Here is ours — practiced, not posted.</p>
-      </div>
+      <div><span class="ex-chap-num">02 &mdash; Approach</span></div>
+      <div><h2 class="ex-h2">How we <em>actually</em> ship.</h2></div>
     </div>
+    <div class="ex-hero-viz ex-rv">${HERO.why}</div>
     <div class="ex-prin-grid">
       <article class="ex-prin ex-rv">
-        <div class="ex-prin-sigil">${PRIN_SIGIL[0]}</div>
         <span class="ex-prin-num">P · 01</span>
-        <h3 class="ex-prin-h">Scope the outcome, not the feature.</h3>
-        <p class="ex-prin-b">We begin with the number on your board deck — revenue, retention, margin — and work backward to the smallest system that moves it.</p>
-        <span class="ex-prin-tag">Outcome-first</span>
+        <h3 class="ex-prin-h">Outcome-first.</h3>
+        <p class="ex-prin-b">We scope around the number on your board deck.</p>
       </article>
       <article class="ex-prin ex-rv" data-d="1">
-        <div class="ex-prin-sigil">${PRIN_SIGIL[1]}</div>
         <span class="ex-prin-num">P · 02</span>
-        <h3 class="ex-prin-h">Senior hands, no pyramid.</h3>
-        <p class="ex-prin-b">Every line of code, prompt, and architectural decision is written by engineers with a decade of context. No juniors billed as principals.</p>
-        <span class="ex-prin-tag">No dilution</span>
+        <h3 class="ex-prin-h">Senior hands only.</h3>
+        <p class="ex-prin-b">No juniors billed as principals. No pyramid.</p>
       </article>
       <article class="ex-prin ex-rv" data-d="2">
-        <div class="ex-prin-sigil">${PRIN_SIGIL[2]}</div>
         <span class="ex-prin-num">P · 03</span>
-        <h3 class="ex-prin-h">Ship in weeks, harden in months.</h3>
-        <p class="ex-prin-b">A working prototype in fourteen days; a production system you can audit by the end of the quarter. Timelines are a contract, not a wish.</p>
-        <span class="ex-prin-tag">Predictable</span>
+        <h3 class="ex-prin-h">Weeks, not quarters.</h3>
+        <p class="ex-prin-b">Prototype in 14 days. Production in one quarter.</p>
       </article>
     </div>
   </div>
@@ -466,50 +717,45 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
 <section id="ex-ind" class="ex-sec">
   <div class="ex-wrap">
     <div class="ex-chap ex-rv">
-      <div>
-        <span class="ex-chap-num">Chapter 03<small>The Depth</small></span>
-        <div class="ex-chap-art">${CHAP_ART.ind}</div>
-      </div>
-      <div>
-        <h2 class="ex-h2">Five industries <br/>where we <em>go deep</em>.</h2>
-        <p class="ex-lede">We decline work we cannot do well. The domains below are the ones where our practice is thickest — regulated, data-rich, unforgiving of shortcuts.</p>
-      </div>
+      <div><span class="ex-chap-num">03 &mdash; Depth</span></div>
+      <div><h2 class="ex-h2">Where we <em>go deep</em>.</h2></div>
     </div>
+    <div class="ex-hero-viz ex-rv">${HERO.ind}</div>
     <div class="ex-ind-list ex-rv">
       <div class="ex-ind-row">
-        <span class="ex-ind-idx">01 / 05</span>
+        <span class="ex-ind-idx">01</span>
         <div class="ex-ind-icon">${IND_ICON.finance}</div>
-        <span class="ex-ind-name">Finance & Capital Markets</span>
-        <span class="ex-ind-desc">Signal extraction, compliance automation, and latency-sensitive execution systems for funds and fintechs.</span>
-        <span class="ex-ind-meta"><b>18</b> engagements</span>
+        <span class="ex-ind-name">Finance</span>
+        <span class="ex-ind-desc">Signals, compliance, execution.</span>
+        <span class="ex-ind-meta"><b>18</b> shipped</span>
       </div>
       <div class="ex-ind-row">
-        <span class="ex-ind-idx">02 / 05</span>
+        <span class="ex-ind-idx">02</span>
         <div class="ex-ind-icon">${IND_ICON.health}</div>
-        <span class="ex-ind-name">Healthcare & Life Sciences</span>
-        <span class="ex-ind-desc">Clinical-grade triage, claims adjudication, and research copilots built against HIPAA and MDR.</span>
-        <span class="ex-ind-meta"><b>14</b> engagements</span>
+        <span class="ex-ind-name">Healthcare</span>
+        <span class="ex-ind-desc">Clinical triage &amp; research copilots.</span>
+        <span class="ex-ind-meta"><b>14</b> shipped</span>
       </div>
       <div class="ex-ind-row">
-        <span class="ex-ind-idx">03 / 05</span>
+        <span class="ex-ind-idx">03</span>
         <div class="ex-ind-icon">${IND_ICON.legal}</div>
-        <span class="ex-ind-name">Legal & Regulated Services</span>
-        <span class="ex-ind-desc">Retrieval pipelines and reasoning agents that cite their sources — because a hallucinated citation is a liability.</span>
-        <span class="ex-ind-meta"><b>11</b> engagements</span>
+        <span class="ex-ind-name">Legal</span>
+        <span class="ex-ind-desc">Retrieval that cites its sources.</span>
+        <span class="ex-ind-meta"><b>11</b> shipped</span>
       </div>
       <div class="ex-ind-row">
-        <span class="ex-ind-idx">04 / 05</span>
+        <span class="ex-ind-idx">04</span>
         <div class="ex-ind-icon">${IND_ICON.retail}</div>
-        <span class="ex-ind-name">Commerce & Consumer Brands</span>
-        <span class="ex-ind-desc">Personalisation engines, conversion-aware search, and content systems that survive a seasonal traffic spike.</span>
-        <span class="ex-ind-meta"><b>22</b> engagements</span>
+        <span class="ex-ind-name">Commerce</span>
+        <span class="ex-ind-desc">Personalisation &amp; search that converts.</span>
+        <span class="ex-ind-meta"><b>22</b> shipped</span>
       </div>
       <div class="ex-ind-row">
-        <span class="ex-ind-idx">05 / 05</span>
+        <span class="ex-ind-idx">05</span>
         <div class="ex-ind-icon">${IND_ICON.manuf}</div>
-        <span class="ex-ind-name">Industrial & Manufacturing</span>
-        <span class="ex-ind-desc">Computer-vision inspection, predictive maintenance, and shopfloor copilots deployed on the edge, not the cloud.</span>
-        <span class="ex-ind-meta"><b>9</b> engagements</span>
+        <span class="ex-ind-name">Industrial</span>
+        <span class="ex-ind-desc">Edge vision &amp; predictive maintenance.</span>
+        <span class="ex-ind-meta"><b>9</b> shipped</span>
       </div>
     </div>
   </div>
@@ -519,36 +765,28 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
 <section id="ex-cases" class="ex-sec alt">
   <div class="ex-wrap">
     <div class="ex-chap ex-rv">
-      <div>
-        <span class="ex-chap-num">Chapter 04<small>The Evidence</small></span>
-        <div class="ex-chap-art">${CHAP_ART.cases}</div>
-      </div>
-      <div>
-        <h2 class="ex-h2">What shipped, <br/>and what it <em>changed</em>.</h2>
-        <p class="ex-lede">Three recent engagements, reported as their operators report them — with the number that made the quarter.</p>
-      </div>
+      <div><span class="ex-chap-num">04 &mdash; Evidence</span></div>
+      <div><h2 class="ex-h2">Shipped, <em>measured</em>, retained.</h2></div>
     </div>
+    <div class="ex-hero-viz ex-rv">${HERO.cases}</div>
     <div class="ex-case-grid">
       <article class="ex-case ex-rv">
-        <span class="ex-case-tag">Fintech · Underwriting</span>
+        <span class="ex-case-tag">Fintech &middot; Underwriting</span>
         <div class="ex-case-metric">2.7<sup>×</sup></div>
-        <h3 class="ex-case-h">Throughput on mid-market loan decisions.</h3>
-        <p class="ex-case-b">A reasoning pipeline over policy documents and bureau data lifted daily decisioning capacity without adding a single analyst to the team.</p>
-        <a href="/projects" class="ex-case-link">Read the case</a>
+        <h3 class="ex-case-h">Loan-decision throughput.</h3>
+        <a href="/projects" class="ex-case-link">Read case</a>
       </article>
       <article class="ex-case ex-rv" data-d="1">
-        <span class="ex-case-tag">Insurance · Claims</span>
+        <span class="ex-case-tag">Insurance &middot; Claims</span>
         <div class="ex-case-metric">87<sup>%</sup></div>
-        <h3 class="ex-case-h">Claims closed without human review.</h3>
-        <p class="ex-case-b">A vector-indexed corpus of policies feeds a cautious agent that closes trivial claims in under nine minutes — and escalates the rest with a reasoned summary.</p>
-        <a href="/projects" class="ex-case-link">Read the case</a>
+        <h3 class="ex-case-h">Auto-closed without review.</h3>
+        <a href="/projects" class="ex-case-link">Read case</a>
       </article>
       <article class="ex-case ex-rv" data-d="2">
-        <span class="ex-case-tag">Industrial · Vision</span>
+        <span class="ex-case-tag">Industrial &middot; Vision</span>
         <div class="ex-case-metric">12<sup>ms</sup></div>
-        <h3 class="ex-case-h">Edge-inference defect detection.</h3>
-        <p class="ex-case-b">A CV model compiled to run on-device caught surface defects a millisecond faster than the line moved — and paid back its engagement inside a quarter.</p>
-        <a href="/projects" class="ex-case-link">Read the case</a>
+        <h3 class="ex-case-h">Edge defect detection.</h3>
+        <a href="/projects" class="ex-case-link">Read case</a>
       </article>
     </div>
   </div>
@@ -558,38 +796,33 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
 <section id="ex-testi" class="ex-sec">
   <div class="ex-wrap">
     <div class="ex-chap ex-rv">
-      <div>
-        <span class="ex-chap-num">Chapter 05<small>The Verdict</small></span>
-        <div class="ex-chap-art">${CHAP_ART.testi}</div>
-      </div>
-      <div>
-        <h2 class="ex-h2">What operators <br/><em>actually say</em> after we leave.</h2>
-        <p class="ex-lede">Three voices, lightly edited for length — each from someone who would take our call if we needed a reference.</p>
-      </div>
+      <div><span class="ex-chap-num">05 &mdash; Verdict</span></div>
+      <div><h2 class="ex-h2">What <em>operators</em> say.</h2></div>
     </div>
+    <div class="ex-hero-viz ex-rv">${HERO.testi}</div>
     <div class="ex-quote-grid">
       <figure class="ex-q ex-rv">
         <div class="ex-q-mark">&ldquo;</div>
-        <blockquote class="ex-q-body">They scoped around the number we actually cared about, shipped in six weeks, and left us a system our own engineers could reason about on day one.</blockquote>
+        <blockquote class="ex-q-body">Shipped in six weeks. Our team owns it on day one.</blockquote>
         <figcaption class="ex-q-attr">
           <span class="ex-q-name">Director of Engineering</span>
-          <span class="ex-q-role">Series C · Fintech · London</span>
+          <span class="ex-q-role">Fintech &middot; London</span>
         </figcaption>
       </figure>
       <figure class="ex-q ex-rv" data-d="1">
         <div class="ex-q-mark">&ldquo;</div>
-        <blockquote class="ex-q-body">The difference was seniority. Every conversation was with someone who had done this before, in our sector, with our constraints. That alone compressed the timeline.</blockquote>
+        <blockquote class="ex-q-body">Every conversation was with a senior. It compressed the timeline.</blockquote>
         <figcaption class="ex-q-attr">
           <span class="ex-q-name">Chief Product Officer</span>
-          <span class="ex-q-role">Public Health Platform · Dublin</span>
+          <span class="ex-q-role">Health Platform &middot; Dublin</span>
         </figcaption>
       </figure>
       <figure class="ex-q ex-rv" data-d="2">
         <div class="ex-q-mark">&ldquo;</div>
-        <blockquote class="ex-q-body">We&rsquo;ve worked with three consultancies on this stack. Elixir is the one we&rsquo;ve kept briefing &mdash; because the work outlasts the engagement.</blockquote>
+        <blockquote class="ex-q-body">The work outlasts the engagement. That&rsquo;s why we keep briefing them.</blockquote>
         <figcaption class="ex-q-attr">
           <span class="ex-q-name">VP, Data &amp; Platform</span>
-          <span class="ex-q-role">Global Retail Group · Frankfurt</span>
+          <span class="ex-q-role">Retail Group &middot; Frankfurt</span>
         </figcaption>
       </figure>
     </div>
@@ -600,18 +833,14 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
 <section id="ex-cta" class="ex-sec alt">
   <div class="ex-wrap">
     <div class="ex-chap ex-rv">
-      <div>
-        <span class="ex-chap-num">Epilogue<small>The Invitation</small></span>
-        <div class="ex-chap-art">${CHAP_ART.cta}</div>
-      </div>
-      <div>
-        <p class="ex-lede">A thirty-minute conversation is enough to know whether we&rsquo;re the right partner for the next line on your roadmap.</p>
-      </div>
+      <div><span class="ex-chap-num">06 &mdash; Begin</span></div>
+      <div><h2 class="ex-h2">Bring the number. <br/>We&rsquo;ll bring <em>the plan</em>.</h2></div>
     </div>
+    <div class="ex-hero-viz ex-rv">${HERO.cta}</div>
     <div class="ex-cta-wrap ex-rv">
-      <h2 class="ex-cta-h">Bring the number. <br/>We&rsquo;ll bring <em>the plan</em>.</h2>
+      <div></div>
       <div class="ex-cta-right">
-        <p class="ex-cta-b">Tell us the outcome you need to move. We&rsquo;ll leave the call with a scoped delivery path, a defensible timeline, and &mdash; if we&rsquo;re not the right fit &mdash; an honest referral.</p>
+        <p class="ex-cta-b">30 minutes. Scoped delivery path. Honest referral if we&rsquo;re not the fit.</p>
         <div class="ex-cta-btns">
           <a href="/contact-us" class="ex-btn ex-btn-p">Book a scoping call</a>
           <a href="/projects" class="ex-btn ex-btn-s">See recent work</a>
