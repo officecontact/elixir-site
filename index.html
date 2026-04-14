@@ -91,13 +91,26 @@ var EX_SECTIONS=[{id:"ex-stats",html:"<div id=\"ex-stats\" class=\"ex-s\">\n  <d
     injectCSS();
     var allDone=true;
     EX_SECTIONS.forEach(function(s){ if(!insertSection(s)) allDone=false; });
-    if(allDone) setupAnimations();
+    setupAnimations();
+    forceVisible();
     return allDone;
   }
 
   /* IntersectionObserver scroll-reveal */
+  function forceVisible(){
+    setTimeout(function(){
+      document.querySelectorAll(".ex-rv,.ex-sg").forEach(function(el){ el.classList.add("in"); });
+      document.querySelectorAll("[data-target]").forEach(function(el){
+        if(el.textContent==="0"||el.textContent==="0+"||el.textContent==="0%"){
+          var t=parseFloat(el.dataset.target), s=el.dataset.suffix||"", d=parseInt(el.dataset.dec||"0");
+          el.textContent=(d>0?t.toFixed(d):Math.round(t))+s;
+        }
+      });
+    },2000);
+  }
+
   function setupAnimations(){
-    if(!window.IntersectionObserver) return;
+    if(!window.IntersectionObserver){ forceVisible(); return; }
 
     function makeObs(threshold){
       return new IntersectionObserver(function(entries,obs){
