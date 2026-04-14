@@ -65,10 +65,12 @@ var EX_SECTIONS=[{id:"ex-stats",html:"<div id=\"ex-stats\" class=\"ex-s\">\n  <d
   }
 
   /* insert one section node */
+  function footerAnchor(){ return document.querySelector('footer'); }
+
   function insertSection(s){
     if(document.getElementById(s.id)) return true; /* already present */
-    var cv=canvas();
-    if(!cv) return false; /* not ready */
+    var foot=footerAnchor();
+    if(!foot||!foot.parentNode) return false; /* not ready */
     var d=document.createElement('div');
     d.innerHTML=s.html;
     var node=d.firstElementChild;
@@ -77,12 +79,11 @@ var EX_SECTIONS=[{id:"ex-stats",html:"<div id=\"ex-stats\" class=\"ex-s\">\n  <d
       var hero=heroSection();
       if(hero&&hero.nextSibling&&hero.parentNode){
         hero.parentNode.insertBefore(node, hero.nextSibling);
-      } else if(cv.parentNode){
-        cv.parentNode.insertBefore(node, cv);
+        return true;
       }
-    } else {
-      cv.parentNode.insertBefore(node, cv);
     }
+    /* default + after-hero fallback: insert before footer (full page width) */
+    foot.parentNode.insertBefore(node, foot);
     return true;
   }
 
