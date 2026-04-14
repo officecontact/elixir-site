@@ -167,10 +167,6 @@ var EX_SECTIONS=[{id:"ex-stats",html:"<div id=\"ex-stats\" class=\"ex-s\">\n  <d
     var missing=EX_SECTIONS.some(function(s){return !document.getElementById(s.id);});
     if(missing) injectAll();
   }
-  document.addEventListener('DOMContentLoaded', function(){
-    attempt();
-    [100,300,600,1000,1800,3000,5000].forEach(function(t){ setTimeout(attempt,t); });
-  });
   function startPoller(){
     var polls=0;
     var timer=setInterval(function(){
@@ -181,9 +177,15 @@ var EX_SECTIONS=[{id:"ex-stats",html:"<div id=\"ex-stats\" class=\"ex-s\">\n  <d
     },800);
   }
   window.addEventListener('load', function(){
-    attempt();
-    setTimeout(function(){ attempt(); watchDOM(); startPoller(); },200);
-    [500,1000,2000,4000].forEach(function(t){ setTimeout(attempt,t); });
+    /* wait for React hydration to fully settle before touching DOM.
+       Pre-hydration DOM mutation triggers React error #418 which
+       wipes the entire tree and re-renders from scratch. */
+    setTimeout(function(){
+      attempt();
+      watchDOM();
+      startPoller();
+      [500,1500,3000,5000].forEach(function(t){ setTimeout(attempt,t); });
+    },1500);
   });
 })();
 </script>
