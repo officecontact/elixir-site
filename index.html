@@ -460,23 +460,20 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
   ];
   function hideOld(){
     try {
-      var heads = document.querySelectorAll('h1, h2');
+      var heads = document.querySelectorAll('h2');
       heads.forEach(function(h){
         var t = (h.textContent || '').trim();
+        /* skip our own injected h2s */
+        if (h.closest('[id^="ex-"]')) return;
         for (var i = 0; i < OLD_MATCHES.length; i++){
           if (t.indexOf(OLD_MATCHES[i]) !== -1){
-            /* walk up to the outermost section/panel */
-            var node = h, stop = document.body;
-            while (node && node.parentNode && node.parentNode !== stop){
-              var p = node.parentNode;
-              /* stop at direct body child, or at a flex/grid parent wrapper */
-              if (p === document.body) break;
-              node = p;
-              /* don't walk above a main/section/article that clearly wraps only this block */
-              if (node.tagName === 'MAIN') { node = h.closest('section,div'); break; }
-            }
-            var target = h.closest('section') || node;
-            if (target && target !== document.body){
+            /* ONLY hide if there's a proper <section> ancestor.
+               Never walk up past section — that risks hiding main/body. */
+            var target = h.closest('section');
+            /* safety: target must not be an ancestor of footer or hero */
+            if (target && target !== document.body
+                && !target.contains(document.querySelector('footer'))
+                && target.querySelector('h1') === null){
               target.style.display = 'none';
               target.setAttribute('data-ex-hidden','1');
             }
