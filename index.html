@@ -1062,6 +1062,78 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
   </div>
 </section>`;
 
+  var calcHTML = `
+<section id="ex-calc-home" class="ex-sec">
+  <style>
+  #ex-calc-home .calc-wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+  #ex-calc-home .calc-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:36px;align-items:stretch;margin-top:36px}
+  @media(max-width:900px){#ex-calc-home .calc-grid{grid-template-columns:1fr}}
+  #ex-calc-home .calc-card{background:var(--ex-paper-2);border:1px solid var(--ex-rule);border-radius:14px;padding:32px}
+  #ex-calc-home .calc-in{margin-bottom:22px}
+  #ex-calc-home .calc-in label{display:flex;justify-content:space-between;font-size:13px;color:var(--ex-ink-2);margin-bottom:10px;font-weight:500}
+  #ex-calc-home .calc-in label b{color:var(--ex-ink);font-family:var(--ex-mono);font-weight:500}
+  #ex-calc-home .calc-in input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:4px;background:var(--ex-rule);border-radius:4px;outline:none}
+  #ex-calc-home .calc-in input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--ex-pink),var(--ex-violet));cursor:pointer;border:2px solid #fff2;box-shadow:0 4px 12px rgba(236,72,153,.4)}
+  #ex-calc-home .calc-in input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--ex-pink),var(--ex-violet));cursor:pointer;border:2px solid #fff2}
+  #ex-calc-home .calc-res{background:linear-gradient(160deg,var(--ex-paper-2),var(--ex-paper));border:1px solid var(--ex-rule);border-radius:14px;padding:32px;display:flex;flex-direction:column}
+  #ex-calc-home .calc-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+  #ex-calc-home .calc-cell{background:rgba(255,255,255,.025);border:1px solid var(--ex-rule);border-radius:10px;padding:16px}
+  #ex-calc-home .calc-lbl{font-family:var(--ex-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ex-mute);margin:0 0 8px}
+  #ex-calc-home .calc-val{font-weight:700;font-size:22px;letter-spacing:-.02em;line-height:1;margin:0;color:var(--ex-ink)}
+  #ex-calc-home .calc-val.alt{background:linear-gradient(110deg,var(--ex-pink),var(--ex-violet),var(--ex-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  #ex-calc-home .calc-save{margin-top:auto;padding:20px;border:1px solid var(--ex-pink);border-radius:12px;background:linear-gradient(110deg,rgba(236,72,153,.08),rgba(168,85,247,.08))}
+  #ex-calc-home .calc-save-lbl{font-family:var(--ex-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ex-pink);margin:0 0 6px}
+  #ex-calc-home .calc-save-val{font-weight:700;font-size:clamp(28px,3.5vw,40px);letter-spacing:-.025em;line-height:1;margin:0;background:linear-gradient(110deg,var(--ex-pink),var(--ex-violet),var(--ex-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  #ex-calc-home .calc-save-sub{font-size:12px;color:var(--ex-ink-2);margin:8px 0 0}
+  #ex-calc-home .calc-cta{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+  </style>
+  <div class="calc-wrap">
+    <div class="ex-chap ex-rv">
+      <div><span class="ex-chap-num">05.5 &mdash; Calculate</span></div>
+      <div><h2 class="ex-h2">See what <em>vibe coding</em> saves you.</h2></div>
+    </div>
+    <div class="calc-grid ex-rv">
+      <div class="calc-card">
+        <div class="calc-in">
+          <label>Team size <b id="ch-lbl-team">5</b></label>
+          <input type="range" id="ch-team" min="1" max="20" value="5">
+        </div>
+        <div class="calc-in">
+          <label>Hourly rate (USD) <b id="ch-lbl-rate">$120</b></label>
+          <input type="range" id="ch-rate" min="60" max="250" value="120" step="5">
+        </div>
+        <div class="calc-in">
+          <label>Project hours <b id="ch-lbl-hours">2,000</b></label>
+          <input type="range" id="ch-hours" min="200" max="10000" value="2000" step="100">
+        </div>
+        <div class="calc-in">
+          <label>Speed multiplier <b id="ch-lbl-speed">5&times;</b></label>
+          <input type="range" id="ch-speed" min="2" max="8" value="5" step="1">
+        </div>
+      </div>
+      <div class="calc-res">
+        <div class="calc-row">
+          <div class="calc-cell"><p class="calc-lbl">Traditional cost</p><p class="calc-val" id="ch-trad">$240,000</p></div>
+          <div class="calc-cell"><p class="calc-lbl">Elixir cost</p><p class="calc-val alt" id="ch-elx">$48,000</p></div>
+        </div>
+        <div class="calc-row">
+          <div class="calc-cell"><p class="calc-lbl">Traditional timeline</p><p class="calc-val" id="ch-tradt">10 wks</p></div>
+          <div class="calc-cell"><p class="calc-lbl">Elixir timeline</p><p class="calc-val alt" id="ch-elxt">2 wks</p></div>
+        </div>
+        <div class="calc-save">
+          <p class="calc-save-lbl">Your savings</p>
+          <p class="calc-save-val" id="ch-save">$192,000</p>
+          <p class="calc-save-sub" id="ch-savesub">80% lower spend &middot; 8 weeks back on the calendar</p>
+        </div>
+        <div class="calc-cta">
+          <a href="/calculator" class="ex-btn ex-btn-p">Open full calculator</a>
+          <a href="/contact" class="ex-btn ex-btn-s">Book a free audit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`;
+
   var SECTIONS = [
     { id: 'ex-banner', html: bannerHTML },
     { id: 'ex-stats',  html: statsHTML },
@@ -1070,6 +1142,7 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
     { id: 'ex-proc',   html: procHTML },
     { id: 'ex-ind',    html: indHTML },
     { id: 'ex-cases',  html: casesHTML },
+    { id: 'ex-calc-home', html: calcHTML },
     { id: 'ex-testi',  html: testiHTML },
     { id: 'ex-cta',    html: ctaHTML }
   ];
@@ -1302,6 +1375,39 @@ body > div[style*="height:72px"]:not(#static-nav-spacer) { display: none; }
     hideOld();
     setupAnimations();
     setTimeout(initMesh, 100);
+    setTimeout(initCalc, 50);
+  }
+
+  function initCalc(){
+    var team = document.getElementById('ch-team');
+    if (!team || team.dataset.wired) return;
+    team.dataset.wired = '1';
+    var rate = document.getElementById('ch-rate'),
+        hours = document.getElementById('ch-hours'),
+        speed = document.getElementById('ch-speed');
+    var fmt = function(n){ return '$' + Math.round(n).toLocaleString('en-US'); };
+    function recalc(){
+      var t = +team.value, r = +rate.value, h = +hours.value, s = +speed.value;
+      document.getElementById('ch-lbl-team').textContent = t;
+      document.getElementById('ch-lbl-rate').textContent = '$' + r;
+      document.getElementById('ch-lbl-hours').textContent = h.toLocaleString('en-US');
+      document.getElementById('ch-lbl-speed').innerHTML = s + '&times;';
+      var tradCost = h * r;
+      var elxHours = h / s;
+      var elxCost = elxHours * r * 1.15;
+      var tradWeeks = Math.max(1, Math.round(h / (t * 40)));
+      var elxWeeks = Math.max(1, Math.round(elxHours / (Math.min(t, 3) * 40)));
+      var save = tradCost - elxCost;
+      var pct = Math.round((save / tradCost) * 100);
+      document.getElementById('ch-trad').textContent = fmt(tradCost);
+      document.getElementById('ch-elx').textContent = fmt(elxCost);
+      document.getElementById('ch-tradt').textContent = tradWeeks + ' wks';
+      document.getElementById('ch-elxt').textContent = elxWeeks + ' wks';
+      document.getElementById('ch-save').textContent = fmt(save);
+      document.getElementById('ch-savesub').textContent = pct + '% lower spend \u00b7 ' + (tradWeeks - elxWeeks) + ' weeks back on the calendar';
+    }
+    [team, rate, hours, speed].forEach(function(el){ el.addEventListener('input', recalc); });
+    recalc();
   }
 
   function boot(){
