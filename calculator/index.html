@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/assets/img/e-logo.png" sizes="32x32">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<!-- ex-seo-start -->
+<title>AI ROI Calculator | Estimate Savings vs Traditional Dev Shops | Elixir</title>
+<meta name="description" content="Estimate what AI-assisted (vibe coding) delivery saves you vs a traditional dev shop. Plug in team size, hourly rate and project hours — see cost & timeline savings.">
+<link rel="canonical" href="https://elixirmultinational.com/calculator">
+<meta property="og:title" content="AI ROI Calculator | Elixir Multinational">
+<meta property="og:description" content="See what vibe coding saves you vs a traditional dev shop. Interactive calculator — cost, timeline, hours.">
+<meta property="og:url" content="https://elixirmultinational.com/calculator">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://elixirmultinational.com/assets/img/e-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI ROI Calculator | Elixir Multinational">
+<meta name="twitter:description" content="See what vibe coding saves you vs a traditional dev shop.">
+<!-- ex-seo-end -->
+<style>
+:root {
+  --ex-bg:#030014; --ex-bg-2:#060028; --ex-paper:#0a0520; --ex-paper-2:#120830;
+  --ex-ink:#f6f4ff; --ex-ink-2:rgba(246,244,255,.78); --ex-mute:rgba(246,244,255,.56);
+  --ex-rule:rgba(255,255,255,.1);
+  --ex-pink:#ec4899; --ex-violet:#a855f7; --ex-cyan:#22d3ee;
+  --ex-sans:'Inter',system-ui,sans-serif; --ex-mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--ex-bg);color:var(--ex-ink);font-family:var(--ex-sans);-webkit-font-smoothing:antialiased}
+.ex-nav{position:sticky;top:0;z-index:50;background:rgba(3,0,20,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--ex-rule);padding:18px 32px;display:flex;align-items:center;justify-content:space-between}
+.ex-nav-logo{font-weight:700;font-size:18px;letter-spacing:-.02em;text-decoration:none;background:linear-gradient(110deg,var(--ex-pink),var(--ex-violet),var(--ex-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ex-nav-links{display:flex;gap:28px}
+.ex-nav-links a{font-size:14px;color:var(--ex-ink-2);text-decoration:none;transition:color .3s}
+.ex-nav-links a:hover{color:var(--ex-pink)}
+@media(max-width:720px){.ex-nav-links{display:none}}
+
+.ex-hero{padding:80px 24px 40px;background:radial-gradient(ellipse 900px 500px at 12% 0%,rgba(236,72,153,.14),transparent 60%),radial-gradient(ellipse 700px 500px at 90% 100%,rgba(99,102,241,.12),transparent 60%),var(--ex-bg);text-align:center}
+.ex-eyebrow{font-family:var(--ex-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ex-pink);display:inline-block;padding-left:64px;position:relative;margin-bottom:22px}
+.ex-eyebrow::before{content:'';position:absolute;left:0;top:50%;width:48px;height:2px;background:var(--ex-pink)}
+.ex-h1{font-weight:700;font-size:clamp(36px,5.4vw,64px);line-height:1.04;letter-spacing:-.028em;margin:0 auto 18px;max-width:18ch}
+.ex-h1 em{font-style:normal;background:linear-gradient(110deg,var(--ex-pink),var(--ex-violet),var(--ex-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ex-lede{font-size:18px;color:var(--ex-ink-2);max-width:60ch;margin:0 auto;line-height:1.6}
+
+.ex-calc{padding:60px 24px 100px;max-width:1100px;margin:0 auto}
+.ex-calc-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
+@media(max-width:900px){.ex-calc-grid{grid-template-columns:1fr;gap:32px}}
+
+.ex-card{background:var(--ex-paper-2);border:1px solid var(--ex-rule);border-radius:14px;padding:36px}
+.ex-card-h{font-family:var(--ex-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ex-pink);margin:0 0 24px}
+.ex-input{margin-bottom:24px}
+.ex-input label{display:flex;justify-content:space-between;font-size:13px;color:var(--ex-ink-2);margin-bottom:10px;font-weight:500}
+.ex-input label b{color:var(--ex-ink);font-family:var(--ex-mono);font-weight:500}
+.ex-input input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:4px;background:var(--ex-rule);border-radius:4px;outline:none}
+.ex-input input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--ex-pink),var(--ex-violet));cursor:pointer;border:2px solid #fff2;box-shadow:0 4px 12px rgba(236,72,153,.4)}
+.ex-input input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--ex-pink),var(--ex-violet));cursor:pointer;border:2px solid #fff2}
+.ex-input-foot{font-size:11px;color:var(--ex-mute);margin-top:6px;font-family:var(--ex-mono)}
+
+.ex-result{background:linear-gradient(160deg,var(--ex-paper-2),var(--ex-paper));border:1px solid var(--ex-rule);border-radius:14px;padding:36px;position:relative;overflow:hidden}
+.ex-result::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 400px 200px at 100% 0%,rgba(236,72,153,.12),transparent 70%);pointer-events:none}
+.ex-res-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;position:relative}
+.ex-res-cell{background:rgba(255,255,255,.025);border:1px solid var(--ex-rule);border-radius:10px;padding:18px}
+.ex-res-lbl{font-family:var(--ex-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ex-mute);margin:0 0 10px}
+.ex-res-val{font-weight:700;font-size:24px;letter-spacing:-.02em;line-height:1;margin:0;color:var(--ex-ink)}
+.ex-res-val small{font-size:13px;font-weight:500;color:var(--ex-ink-2);margin-left:4px}
+.ex-res-val.alt{background:linear-gradient(110deg,var(--ex-pink),var(--ex-violet),var(--ex-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+.ex-savings{margin-top:24px;padding:24px;border:1px solid var(--ex-pink);border-radius:12px;background:linear-gradient(110deg,rgba(236,72,153,.08),rgba(168,85,247,.08));position:relative}
+.ex-savings-lbl{font-family:var(--ex-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ex-pink);margin:0 0 8px}
+.ex-savings-val{font-weight:700;font-size:clamp(34px,4vw,46px);letter-spacing:-.025em;line-height:1;margin:0;background:linear-gradient(110deg,var(--ex-pink),var(--ex-violet),var(--ex-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ex-savings-sub{font-size:13px;color:var(--ex-ink-2);margin:10px 0 0}
+
+.ex-cta-row{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+.ex-btn-p{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;background:linear-gradient(100deg,var(--ex-pink),var(--ex-violet));color:#fff;font-size:14px;font-weight:500;text-decoration:none;border-radius:10px;box-shadow:0 10px 30px -10px rgba(236,72,153,.5);transition:all .35s;border:none;cursor:pointer}
+.ex-btn-p:hover{transform:translateY(-2px);box-shadow:0 14px 36px -10px rgba(236,72,153,.7)}
+.ex-btn-p::after{content:'→';transition:transform .3s}
+.ex-btn-p:hover::after{transform:translateX(4px)}
+.ex-btn-s{display:inline-flex;align-items:center;padding:14px 22px;background:transparent;color:var(--ex-ink-2);font-size:14px;font-weight:500;text-decoration:none;border-radius:10px;border:1px solid var(--ex-rule);transition:all .3s}
+.ex-btn-s:hover{border-color:var(--ex-pink);color:var(--ex-ink)}
+
+.ex-method{margin-top:60px;padding:36px;background:var(--ex-paper);border:1px solid var(--ex-rule);border-radius:14px}
+.ex-method h3{font-size:18px;margin:0 0 16px;font-weight:600;color:var(--ex-ink)}
+.ex-method p{font-size:14px;line-height:1.7;color:var(--ex-ink-2);margin:0 0 12px;max-width:80ch}
+.ex-method b{color:var(--ex-ink)}
+
+.ex-foot{background:var(--ex-bg-2);padding:56px 24px;border-top:1px solid var(--ex-rule);text-align:center}
+.ex-foot-c{font-size:12px;color:var(--ex-mute)}
+</style>
+</head>
+<body>
+
+<nav class="ex-nav">
+  <a href="/" class="ex-nav-logo">ELIXIR</a>
+  <div class="ex-nav-links">
+    <a href="/services/ai">Services</a>
+    <a href="/projects">Projects</a>
+    <a href="/blogs">Blog</a>
+    <a href="/ourcompany">Company</a>
+    <a href="/contact">Contact</a>
+  </div>
+</nav>
+
+<section class="ex-hero">
+  <span class="ex-eyebrow">ROI Calculator</span>
+  <h1 class="ex-h1">See what <em>vibe coding</em> saves you.</h1>
+  <p class="ex-lede">Plug in your project shape. We'll show what a traditional dev shop would charge — and what AI-assisted delivery costs instead. Numbers update live.</p>
+</section>
+
+<section class="ex-calc">
+  <div class="ex-calc-grid">
+
+    <div class="ex-card">
+      <h2 class="ex-card-h">Your project</h2>
+
+      <div class="ex-input">
+        <label>Engineering team size <b id="lbl-team">5</b></label>
+        <input type="range" id="team" min="1" max="20" value="5">
+        <p class="ex-input-foot">Engineers a traditional shop would assign</p>
+      </div>
+
+      <div class="ex-input">
+        <label>Avg loaded hourly rate (USD) <b id="lbl-rate">$120</b></label>
+        <input type="range" id="rate" min="60" max="250" value="120" step="5">
+        <p class="ex-input-foot">Typical US/EU dev shop blended rate</p>
+      </div>
+
+      <div class="ex-input">
+        <label>Project hours (traditional estimate) <b id="lbl-hours">2,000</b></label>
+        <input type="range" id="hours" min="200" max="10000" value="2000" step="100">
+        <p class="ex-input-foot">Total billable hours quoted</p>
+      </div>
+
+      <div class="ex-input">
+        <label>Speed multiplier (vibe coding) <b id="lbl-speed">5×</b></label>
+        <input type="range" id="speed" min="2" max="8" value="5" step="1">
+        <p class="ex-input-foot">How much faster AI-assisted delivery ships. Default 5×.</p>
+      </div>
+    </div>
+
+    <div class="ex-result">
+      <div class="ex-res-row">
+        <div class="ex-res-cell">
+          <p class="ex-res-lbl">Traditional cost</p>
+          <p class="ex-res-val" id="r-trad">$240,000</p>
+        </div>
+        <div class="ex-res-cell">
+          <p class="ex-res-lbl">Elixir cost</p>
+          <p class="ex-res-val alt" id="r-elx">$48,000</p>
+        </div>
+      </div>
+      <div class="ex-res-row">
+        <div class="ex-res-cell">
+          <p class="ex-res-lbl">Traditional timeline</p>
+          <p class="ex-res-val" id="r-trad-t">10 wks</p>
+        </div>
+        <div class="ex-res-cell">
+          <p class="ex-res-lbl">Elixir timeline</p>
+          <p class="ex-res-val alt" id="r-elx-t">2 wks</p>
+        </div>
+      </div>
+
+      <div class="ex-savings">
+        <p class="ex-savings-lbl">Your savings</p>
+        <p class="ex-savings-val" id="r-save">$192,000</p>
+        <p class="ex-savings-sub" id="r-save-sub">80% lower spend · 8 weeks back on the calendar</p>
+      </div>
+
+      <div class="ex-cta-row">
+        <a href="/contact" class="ex-btn-p">Book a free AI audit</a>
+        <a href="/projects" class="ex-btn-s">See real outcomes</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ex-method">
+    <h3>How we calculate this</h3>
+    <p><b>Traditional cost</b> = team size × hours × hourly rate ÷ team size, i.e. straight hours × rate. The team-size slider scales the timeline (more engineers → shorter calendar weeks, same total hours).</p>
+    <p><b>Elixir cost</b> assumes vibe coding compresses required hours by the speed multiplier (default 5×) and reduces team count to a small senior pod (≤3) — both effects compound. Default assumptions are conservative; on most engagements the gap is wider.</p>
+    <p><b>Caveat</b> — these are illustrative. Real scope, integrations, and risk drive the actual number. <a href="/contact" style="color:var(--ex-pink)">Book the free audit</a> for a written, line-itemed estimate.</p>
+  </div>
+</section>
+
+<footer class="ex-foot">
+  <p class="ex-foot-c">© 2026 Elixir Multinational · <a href="/" style="color:var(--ex-mute);text-decoration:none">elixirmultinational.com</a></p>
+</footer>
+
+<script>
+(function(){
+  var team = document.getElementById('team');
+  var rate = document.getElementById('rate');
+  var hours = document.getElementById('hours');
+  var speed = document.getElementById('speed');
+
+  var fmt = function(n){ return '$' + Math.round(n).toLocaleString('en-US'); };
+  var fmtN = function(n){ return n.toLocaleString('en-US'); };
+
+  function recalc(){
+    var t = +team.value, r = +rate.value, h = +hours.value, s = +speed.value;
+
+    document.getElementById('lbl-team').textContent = t;
+    document.getElementById('lbl-rate').textContent = '$' + r;
+    document.getElementById('lbl-hours').textContent = fmtN(h);
+    document.getElementById('lbl-speed').textContent = s + '×';
+
+    var tradCost = h * r;
+    // Elixir: senior pod (max 3), hours compressed by speed multiplier, slight rate uplift for senior-only (1.15x)
+    var elxHours = h / s;
+    var elxRate = r * 1.15;
+    var elxCost = elxHours * elxRate;
+
+    // Timelines: assume 40h/wk per engineer; traditional uses team size, Elixir uses min(t, 3)
+    var tradWeeks = Math.max(1, Math.round(h / (t * 40)));
+    var elxWeeks = Math.max(1, Math.round(elxHours / (Math.min(t, 3) * 40)));
+
+    var savings = tradCost - elxCost;
+    var savingsPct = Math.round((savings / tradCost) * 100);
+    var weeksSaved = tradWeeks - elxWeeks;
+
+    document.getElementById('r-trad').textContent = fmt(tradCost);
+    document.getElementById('r-elx').innerHTML = fmt(elxCost);
+    document.getElementById('r-trad-t').innerHTML = tradWeeks + ' <small>wks</small>';
+    document.getElementById('r-elx-t').innerHTML = elxWeeks + ' <small>wks</small>';
+    document.getElementById('r-save').textContent = fmt(savings);
+    document.getElementById('r-save-sub').textContent =
+      savingsPct + '% lower spend · ' + weeksSaved + ' weeks back on the calendar';
+  }
+
+  [team, rate, hours, speed].forEach(function(el){ el.addEventListener('input', recalc); });
+  recalc();
+})();
+</script>
+
+</body>
+</html>
